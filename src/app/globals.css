@@ -1,31 +1,41 @@
 @import "tailwindcss";
 
-/* Design Tokens - Dark Mode Bold & Modern */
+/* Design Tokens - Dark Mode Earthy Green */
 :root {
   /* Backgrounds */
-  --color-bg-primary: #0A0A0A;
-  --color-bg-secondary: #111111;
-  --color-bg-card: #1A1A1A;
-  --color-bg-hover: #252525;
+  --color-bg-primary: #0A0F0A;
+  --color-bg-secondary: #0D1410;
+  --color-bg-card: #141F18;
+  --color-bg-hover: #1A2A20;
 
   /* Text */
-  --color-text-primary: #FAFAFA;
-  --color-text-secondary: #A1A1A1;
-  --color-text-tertiary: #666666;
+  --color-text-primary: #F0F5F1;
+  --color-text-secondary: #9CAF9C;
+  --color-text-tertiary: #5A6B5A;
 
-  /* Accents */
-  --color-accent: #FF5733;
-  --color-accent-hover: #FF7957;
-  --color-accent-alt: #3B82F6;
+  /* Accents - Earthy Greens */
+  --color-accent: #4A7C59;
+  --color-accent-hover: #5D9A6E;
+  --color-accent-alt: #8FBC8F;
+
+  /* Secondary Accents - Earth Tones */
+  --color-earth-brown: #8B7355;
+  --color-earth-gold: #B8956E;
+  --color-moss: #6B8E6B;
 
   /* Borders */
-  --color-border: #2A2A2A;
-  --color-border-hover: #404040;
+  --color-border: #1F2F22;
+  --color-border-hover: #2A4030;
 
   /* Gradients */
-  --gradient-hero: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --gradient-accent: linear-gradient(90deg, #FF5733, #FFC300);
-  --gradient-card: linear-gradient(145deg, #1A1A1A, #0F0F0F);
+  --gradient-hero: linear-gradient(135deg, #2D5A3D 0%, #1A3D2A 100%);
+  --gradient-accent: linear-gradient(90deg, #4A7C59, #8FBC8F);
+  --gradient-card: linear-gradient(145deg, #141F18, #0A0F0A);
+
+  /* Contour line colors */
+  --color-contour-1: rgba(74, 124, 89, 0.15);
+  --color-contour-2: rgba(143, 188, 143, 0.1);
+  --color-contour-3: rgba(107, 142, 107, 0.08);
 }
 
 @theme inline {
@@ -42,6 +52,9 @@
   --color-accent-alt: var(--color-accent-alt);
   --color-border: var(--color-border);
   --color-border-hover: var(--color-border-hover);
+  --color-earth-brown: var(--color-earth-brown);
+  --color-earth-gold: var(--color-earth-gold);
+  --color-moss: var(--color-moss);
 
   /* Fonts */
   --font-display: var(--font-display);

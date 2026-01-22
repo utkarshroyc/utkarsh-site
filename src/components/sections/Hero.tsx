@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowDown } from "lucide-react";
+import ContourBackground from "@/components/ui/ContourBackground";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -30,21 +31,13 @@ const itemVariants = {
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 bg-bg-primary">
-        {/* Gradient orbs */}
-        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-accent/10 rounded-full blur-[128px]" />
-        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-accent-alt/10 rounded-full blur-[128px]" />
+      {/* Animated Contour Background */}
+      <ContourBackground />
 
-        {/* Grid pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.02]"
-          style={{
-            backgroundImage: `linear-gradient(var(--color-text-primary) 1px, transparent 1px),
-                             linear-gradient(90deg, var(--color-text-primary) 1px, transparent 1px)`,
-            backgroundSize: '60px 60px',
-          }}
-        />
+      {/* Subtle gradient orbs */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-accent/5 rounded-full blur-[128px]" />
+        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-moss/5 rounded-full blur-[128px]" />
       </div>
 
       {/* Content */}
@@ -58,9 +51,9 @@ export default function Hero() {
           {/* Tagline */}
           <motion.p
             variants={itemVariants}
-            className="text-text-secondary text-sm md:text-base uppercase tracking-[0.2em] mb-6"
+            className="text-text-secondary text-sm md:text-base uppercase tracking-[0.15em] mb-6"
           >
-            Geographer · Political Ecologist · Researcher
+            Environmental Geographer · Political Ecologist · Biodiversity Specialist
           </motion.p>
 
           {/* Name - Main Headline */}
@@ -81,9 +74,21 @@ export default function Hero() {
             variants={itemVariants}
             className="mt-8 text-text-secondary text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
           >
-            PhD Candidate at the University of Alabama studying river governance,
-            environmental politics, and human-wildlife relations.
+            I study the politics of nature. As a PhD Candidate at the University of Alabama,
+            I investigate how states, institutions, and communities negotiate environmental restoration—bridging
+            rigorous academic research with actionable strategy.
           </motion.p>
+
+          {/* Now Section */}
+          <motion.div
+            variants={itemVariants}
+            className="mt-8 p-4 bg-bg-card/50 border border-border rounded-lg max-w-xl mx-auto"
+          >
+            <p className="text-accent text-xs uppercase tracking-wider mb-2 font-mono">Currently Seeking</p>
+            <p className="text-text-secondary text-sm">
+              2026 roles in Program Management, Research Analysis, or Environmental Policy
+            </p>
+          </motion.div>
 
           {/* CTAs */}
           <motion.div
@@ -91,16 +96,16 @@ export default function Hero() {
             className="mt-10 flex flex-wrap items-center justify-center gap-4"
           >
             <Link
-              href="/about"
+              href="/projects"
               className="px-8 py-4 bg-accent hover:bg-accent-hover text-bg-primary font-semibold rounded-lg transition-colors"
             >
-              Learn More
+              Explore Projects
             </Link>
             <Link
-              href="/projects"
+              href="/about"
               className="px-8 py-4 border border-border hover:border-accent text-text-primary hover:text-accent font-semibold rounded-lg transition-colors"
             >
-              View Projects
+              About Me
             </Link>
           </motion.div>
         </motion.div>

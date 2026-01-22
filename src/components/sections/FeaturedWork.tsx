@@ -10,21 +10,18 @@ const projects = [
     category: "Dissertation Research",
     description: "Political ecology of river restoration on the Ganga",
     href: "/projects/unfinished-river",
-    gradient: "from-purple-600 to-blue-600",
   },
   {
     title: "Seeing Animals Like a State",
     category: "Research Publication",
     description: "Human-wildlife conflict and state governance",
     href: "/projects/seeing-animals-like-a-state",
-    gradient: "from-orange-500 to-red-500",
   },
   {
-    title: "Free Wednesdays",
-    category: "Social Initiative",
-    description: "Period poverty awareness campaign",
-    href: "/projects/free-wednesdays",
-    gradient: "from-pink-500 to-rose-500",
+    title: "GAGES",
+    category: "Technical Research",
+    description: "Geospatial analysis of Ganges ecosystem services",
+    href: "/projects/gages",
   },
 ];
 
@@ -72,10 +69,20 @@ export default function FeaturedWork() {
             >
               <Link href={project.href} className="group block">
                 <article className="relative overflow-hidden rounded-xl border border-border bg-bg-card hover:border-border-hover transition-all duration-300 group-hover:-translate-y-1">
-                  {/* Gradient Header */}
-                  <div
-                    className={`h-48 bg-gradient-to-br ${project.gradient} opacity-80 group-hover:opacity-100 transition-opacity`}
-                  />
+                  {/* Gradient Header with contour pattern */}
+                  <div className="relative h-48 bg-gradient-to-br from-accent/20 via-moss/15 to-accent-alt/20 overflow-hidden">
+                    {/* Contour pattern overlay */}
+                    <svg className="absolute inset-0 w-full h-full opacity-30" viewBox="0 0 200 150" preserveAspectRatio="xMidYMid slice">
+                      <ellipse cx="100" cy="75" rx="80" ry="40" fill="none" stroke="var(--color-accent)" strokeWidth="0.5" />
+                      <ellipse cx="100" cy="75" rx="60" ry="30" fill="none" stroke="var(--color-accent)" strokeWidth="0.5" />
+                      <ellipse cx="100" cy="75" rx="40" ry="20" fill="none" stroke="var(--color-accent)" strokeWidth="0.5" />
+                      <ellipse cx="100" cy="75" rx="20" ry="10" fill="none" stroke="var(--color-accent)" strokeWidth="0.5" />
+                    </svg>
+                    {/* Project number indicator */}
+                    <div className="absolute top-4 right-4 text-accent/40 font-mono text-xs">
+                      {String(index + 1).padStart(2, '0')}
+                    </div>
+                  </div>
 
                   {/* Content */}
                   <div className="p-6">

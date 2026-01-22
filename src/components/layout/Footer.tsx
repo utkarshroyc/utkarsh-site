@@ -3,9 +3,9 @@ import { Mail, Linkedin, BookOpen, Globe } from "lucide-react";
 
 const socialLinks = [
   { href: "mailto:uchoudhury@crimson.ua.edu", icon: Mail, label: "Email" },
-  { href: "#", icon: Linkedin, label: "LinkedIn" },
-  { href: "#", icon: BookOpen, label: "Google Scholar" },
-  { href: "#", icon: Globe, label: "ORCID" },
+  { href: "https://linkedin.com/in/utkarsh-roy-choudhury-816162ba/", icon: Linkedin, label: "LinkedIn" },
+  { href: "https://scholar.google.com", icon: BookOpen, label: "Google Scholar" },
+  { href: "https://orcid.org/0000-0001-6446-1138", icon: Globe, label: "ORCID" },
 ];
 
 const navLinks = [

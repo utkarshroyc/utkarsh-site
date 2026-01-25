@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Link from "next/link";
@@ -19,11 +20,8 @@ export default function AboutPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <p className="text-accent text-sm uppercase tracking-[0.2em] mb-4 font-mono">
-                About
-              </p>
               <h1 className="font-display font-bold text-4xl md:text-5xl tracking-tight mb-6">
-                Bridging Policy, People, and Ecology
+                About
               </h1>
             </motion.div>
           </div>
@@ -41,21 +39,13 @@ export default function AboutPage() {
                 className="lg:col-span-1"
               >
                 <div className="aspect-[3/4] bg-bg-card border border-border rounded-xl overflow-hidden relative">
-                  <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-moss/10" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center text-text-tertiary">
-                      <div className="w-24 h-24 rounded-full bg-bg-hover mx-auto mb-4 flex items-center justify-center">
-                        <span className="text-4xl font-display font-bold text-accent/50">U</span>
-                      </div>
-                      <p className="text-sm">Photo</p>
-                    </div>
-                  </div>
-                  {/* Decorative contours */}
-                  <svg className="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 200 300" preserveAspectRatio="xMidYMid slice">
-                    <ellipse cx="100" cy="150" rx="80" ry="60" fill="none" stroke="var(--color-accent)" strokeWidth="0.5" />
-                    <ellipse cx="100" cy="150" rx="60" ry="45" fill="none" stroke="var(--color-accent)" strokeWidth="0.5" />
-                    <ellipse cx="100" cy="150" rx="40" ry="30" fill="none" stroke="var(--color-accent)" strokeWidth="0.5" />
-                  </svg>
+                  <Image
+                    src="/images/profile.jpg"
+                    alt="Utkarsh Roy Choudhury"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
                 </div>
 
                 {/* Contact Links */}
@@ -82,7 +72,7 @@ export default function AboutPage() {
                     <ExternalLink size={14} className="ml-auto text-text-tertiary" />
                   </a>
                   <a
-                    href="https://scholar.google.com/citations?user=YOUR_ID"
+                    href="https://scholar.google.com/citations?user=gWzksQwAAAAJ&hl=en"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 p-3 bg-bg-card border border-border rounded-lg hover:border-accent transition-colors group"
@@ -148,62 +138,9 @@ export default function AboutPage() {
                     </li>
                   </ul>
 
-                  <h2 className="font-display font-bold text-xl text-text-primary mt-10 mb-4">
-                    More Than Research
-                  </h2>
-
-                  <p className="text-text-secondary leading-relaxed">
-                    I believe that environmental work is inherently collaborative. Beyond my research, I am a <span className="text-text-primary">human job referrer and community builder</span>. I am passionate about connecting talented people with impactful opportunities in the conservation and climate space, fostering the networks necessary to tackle global ecological crises.
-                  </p>
-
-                  <p className="text-text-secondary leading-relaxed">
-                    When I'm not analyzing river politics or mapping multispecies landscapes, you'll find me thinking about cultural shifts, mentoring students, and exploring how we can move from "saving" nature to truly living with it.
-                  </p>
                 </div>
               </motion.div>
             </div>
-          </div>
-        </section>
-
-        {/* Expertise Areas */}
-        <section className="py-16 border-t border-border">
-          <div className="max-w-4xl mx-auto px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 className="font-display font-bold text-2xl mb-8 text-center">Key Expertise</h2>
-              <div className="grid md:grid-cols-3 gap-6">
-                {[
-                  {
-                    title: "Research & Dissertation",
-                    description: "\"The Unfinished River\": A deep dive into the political ecology of the Ganga and the consequences of \"nonhuman erasure\" in infrastructure."
-                  },
-                  {
-                    title: "Strategy & Policy",
-                    description: "A dual-track record of impact—from peer-reviewed publications in Geoforum to policy initiatives with the UNDP and IKEA Foundation."
-                  },
-                  {
-                    title: "Spatial Narratives",
-                    description: "GIS-based mapping projects and data visualizations that translate environmental change into clear, spatial stories."
-                  }
-                ].map((item, index) => (
-                  <motion.div
-                    key={item.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
-                    className="p-6 bg-bg-card border border-border rounded-xl"
-                  >
-                    <h3 className="font-display font-bold text-lg mb-3 text-accent">{item.title}</h3>
-                    <p className="text-text-secondary text-sm">{item.description}</p>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
           </div>
         </section>
 

@@ -3,39 +3,7 @@
 import { motion } from "framer-motion";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import Link from "next/link";
-import { Mail, ArrowUpRight, BookOpen, PenLine, FileText, ExternalLink } from "lucide-react";
-
-const academicWriting = [
-  {
-    title: "Seeing Animals Like a State: Bureaucratic Gaze and Human-Wildlife Conflict",
-    venue: "Geoforum",
-    year: "2024",
-    type: "Journal Article",
-    status: "Published",
-  },
-  {
-    title: "Paper 1 - The Unfinished River Series",
-    venue: "Geoforum",
-    year: "2024",
-    type: "Journal Article",
-    status: "Under Review",
-  },
-  {
-    title: "Paper 2 - The Unfinished River Series",
-    venue: "Environment and Planning E",
-    year: "2024",
-    type: "Journal Article",
-    status: "Under Review",
-  },
-  {
-    title: "Paper 3 - The Unfinished River Series",
-    venue: "Transactions of the Institute of British Geographers",
-    year: "2025",
-    type: "Journal Article",
-    status: "In Preparation",
-  },
-];
+import { ArrowUpRight, BookOpen, PenLine, ExternalLink } from "lucide-react";
 
 export default function WritingPage() {
   return (
@@ -50,15 +18,9 @@ export default function WritingPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <p className="text-accent text-sm uppercase tracking-[0.2em] mb-4 font-mono">
-                Essays & Reflections
-              </p>
               <h1 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl tracking-tight mb-6">
                 Writing
               </h1>
-              <p className="text-text-secondary text-lg md:text-xl max-w-2xl">
-                Academic publications, essays, and reflections on culture, climate, and the spaces in between.
-              </p>
             </motion.div>
           </div>
         </section>
@@ -108,7 +70,7 @@ export default function WritingPage() {
                   </div>
 
                   <a
-                    href="#"
+                    href="https://slightlyunfinished.substack.com/"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-6 py-3 bg-accent hover:bg-accent-hover text-bg-primary font-semibold rounded-lg transition-colors"
@@ -176,56 +138,6 @@ export default function WritingPage() {
           </div>
         </section>
 
-        {/* Academic Writing */}
-        <section className="py-12 pb-24">
-          <div className="max-w-4xl mx-auto px-6 lg:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <div className="flex items-center gap-3 mb-8">
-                <FileText size={20} className="text-accent" />
-                <h2 className="font-display font-bold text-2xl">Academic Writing</h2>
-              </div>
-
-              <div className="space-y-4">
-                {academicWriting.map((item, index) => (
-                  <motion.div
-                    key={item.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: index * 0.1 }}
-                    className="p-6 bg-bg-card border border-border rounded-xl"
-                  >
-                    <div className="flex flex-wrap items-center gap-3 mb-2">
-                      <span className="px-2.5 py-1 text-xs font-medium uppercase tracking-wider bg-accent/10 text-accent border border-accent/20 rounded">
-                        {item.type}
-                      </span>
-                      <span className={`px-2.5 py-1 text-xs font-medium uppercase tracking-wider rounded ${
-                        item.status === "Published"
-                          ? "bg-moss/10 text-moss border border-moss/20"
-                          : item.status === "Under Review"
-                          ? "bg-accent-alt/10 text-accent-alt border border-accent-alt/20"
-                          : "bg-bg-hover text-text-tertiary border border-border"
-                      }`}>
-                        {item.status}
-                      </span>
-                      <span className="text-text-tertiary text-sm">{item.venue}</span>
-                      <span className="text-text-tertiary text-sm font-mono">{item.year}</span>
-                    </div>
-                    <h3 className="font-display font-semibold text-lg text-text-primary">
-                      {item.title}
-                    </h3>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
         {/* External Links */}
         <section className="py-16 border-t border-border">
           <div className="max-w-4xl mx-auto px-6 lg:px-8">
@@ -251,7 +163,7 @@ export default function WritingPage() {
                   <ArrowUpRight size={14} />
                 </a>
                 <a
-                  href="#"
+                  href="https://scholar.google.com/citations?user=gWzksQwAAAAJ&hl=en"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-6 py-3 bg-bg-card border border-border rounded-lg text-text-secondary hover:text-accent hover:border-accent transition-all"
@@ -261,7 +173,7 @@ export default function WritingPage() {
                   <ArrowUpRight size={14} />
                 </a>
                 <a
-                  href="#"
+                  href="https://orcid.org/0000-0001-6446-1138"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 px-6 py-3 bg-bg-card border border-border rounded-lg text-text-secondary hover:text-accent hover:border-accent transition-all"

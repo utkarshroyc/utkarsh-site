@@ -22,14 +22,11 @@ export default function ProjectsPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <p className="text-accent text-sm uppercase tracking-[0.2em] mb-4 font-mono">
-                Research Portfolio
-              </p>
               <h1 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl tracking-tight mb-6">
                 Projects
               </h1>
               <p className="text-text-secondary text-lg md:text-xl max-w-2xl">
-                Research spanning political ecology, environmental governance, and human-wildlife relations across South Asia.
+                Work spanning research, policy, and community initiatives in environmental governance, conservation, and international development.
               </p>
             </motion.div>
           </div>

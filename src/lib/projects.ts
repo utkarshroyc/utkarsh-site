@@ -29,7 +29,7 @@ export const projects: Project[] = [
     title: "The Unfinished River",
     subtitle: "A Political Ecology of the Namami Gange Program",
     category: "Dissertation Research",
-    year: "2022-Present",
+    year: "2022-2026",
     description: "Investigating the political ecology of the Namami Gange program and its impact on aquatic biodiversity.",
     longDescription: `This dissertation investigates the political ecology of the Namami Gange program and its impact on aquatic biodiversity along India's Ganga River.
 
@@ -70,7 +70,7 @@ Three papers are currently in various stages of preparation: two under review at
     title: "Project Disha",
     subtitle: "UNDP & IKEA Foundation Partnership",
     category: "Policy & Strategy",
-    year: "2020-2022",
+    year: "2017",
     description: "Monitored and evaluated project implementation; developed communication plans and solicited strategic partnerships.",
     longDescription: `Project Disha was a collaboration between UNDP India and the IKEA Foundation focused on empowering communities and influencing state-level strategy.
 
@@ -94,7 +94,7 @@ I co-authored two foundational concept notes that improved stakeholder engagemen
     title: "Seeing Animals Like a State",
     subtitle: "Bureaucratic Gaze and Human-Wildlife Conflict",
     category: "Research Publication",
-    year: "2024",
+    year: "2023",
     description: "Led the Q-methodology analysis to study human subjectivity among forestry officials in South India.",
     longDescription: `This research examines how India's wildlife bureaucracy constructs and manages "problem animals" through the lens of human subjectivity.
 
@@ -110,6 +110,7 @@ The research was published in Geoforum and contributes to ongoing debates in pol
       "Contributed to political ecology of conservation"
     ],
     role: "Lead Analyst (Q Methodology)",
+    collaborators: ["Jared D. Margulies", "Dincy Mariyam", "B.R. Rajeev", "Krithi K. Karanth"],
     publications: [
       {
         title: "Seeing Animals Like a State: Bureaucratic Gaze and Human-Wildlife Conflict",
@@ -178,34 +179,11 @@ The findings informed restructuring recommendations that improved student repres
     ]
   },
   {
-    slug: "free-wednesdays",
-    title: "Free Wednesdays",
-    subtitle: "Period Poverty Social Initiative",
-    category: "Social Initiative",
-    year: "2019-2020",
-    description: "Managed weekly distribution of free health products and coordinated with external charities for advice and support.",
-    longDescription: `Free Wednesdays was a social initiative addressing period poverty on campus, providing free menstrual health products and support services.
-
-As Program Manager and Women's Student Officer, I managed weekly distribution logistics and coordinated partnerships with external charities to provide advice and support services.
-
-The initiative combined practical support with awareness-raising about menstrual health equity.`,
-    status: "completed",
-    tags: ["Social Initiative", "Period Poverty", "Health Equity", "Community Organizing"],
-    highlights: [
-      "Managed weekly distribution of health products",
-      "Coordinated with external charities",
-      "Provided advice and support services",
-      "Raised awareness about period poverty"
-    ],
-    role: "Program Manager & Women's Student Officer",
-    collaborators: ["Sussex Students' Union", "External health charities"]
-  },
-  {
     slug: "poverty-unpacked",
     title: "Poverty Unpacked",
     subtitle: "Podcast Research Assistant",
     category: "Knowledge Mobilization",
-    year: "2019-2020",
+    year: "2020",
     description: "Led initial digital communications and social media strategy to launch the podcast.",
     longDescription: `Poverty Unpacked is a podcast produced by the Institute of Development Studies that makes poverty research accessible to broader audiences.
 
@@ -217,8 +195,7 @@ The work focused on translating complex development research into engaging, acce
     highlights: [
       "Led digital communications strategy",
       "Developed social media launch plan",
-      "Translated research for public audiences",
-      "Supported podcast production"
+      "Translated research for public audiences"
     ],
     role: "Research Assistant",
     collaborators: ["Dr. Keetie Roelen", "Institute of Development Studies"],
@@ -232,24 +209,24 @@ The work focused on translating complex development research into engaging, acce
   {
     slug: "gages",
     title: "GAGES",
-    subtitle: "Graduate Association for Geography & Environment",
+    subtitle: "Graduate Association for Geography and Environmental Studies",
     category: "Student Leadership",
-    year: "2023-Present",
-    description: "Founded and designed the graduate student association to inculcate student voices within departmental decision-making.",
-    longDescription: `GAGES (Graduate Association for Geography & Environment) is a student organization I founded at the University of Alabama to strengthen graduate student representation.
+    year: "2023-2026",
+    description: "Co-founded the graduate student association to inculcate student voices within departmental decision-making.",
+    longDescription: `GAGES (Graduate Association for Geography and Environmental Studies) is a student organization I co-founded at the University of Alabama to strengthen graduate student representation.
 
 The association aims to inculcate student voices within departmental decision-making and improve communication among graduate students in the department.
 
-As Founder and Designer, I developed the organizational structure, communication systems, and engagement strategies.`,
+As Co-Founder and Vice President, I developed the organizational structure, communication systems, and engagement strategies.`,
     status: "ongoing",
     tags: ["Student Leadership", "Institutional Design", "Community Building", "Graduate Education"],
     highlights: [
-      "Founded the graduate student association",
+      "Co-founded the graduate student association",
       "Designed organizational structure",
       "Improved departmental communication",
       "Amplified student voices in decision-making"
     ],
-    role: "Founder & Designer",
+    role: "Co-Founder & Vice President",
     collaborators: ["University of Alabama Department of Geography"]
   }
 ];

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
@@ -58,9 +59,15 @@ export default function Navbar() {
             {/* Logo */}
             <Link
               href="/"
-              className="font-display font-bold text-xl tracking-tight hover:text-accent transition-colors"
+              className="hover:opacity-80 transition-opacity"
             >
-              URC
+              <Image
+                src="/images/logo.png"
+                alt="URC"
+                width={48}
+                height={48}
+                className="h-10 w-auto"
+              />
             </Link>
 
             {/* Desktop Navigation */}

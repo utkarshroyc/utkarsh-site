@@ -19,6 +19,10 @@ export const metadata: Metadata = {
   description: "PhD Candidate at the University of Alabama studying river governance, environmental politics, and human-wildlife relations.",
   keywords: ["geography", "political ecology", "environmental governance", "researcher", "PhD"],
   authors: [{ name: "Utkarsh Roy Choudhury" }],
+  icons: {
+    icon: "/favicon.png",
+    apple: "/favicon.png",
+  },
   openGraph: {
     title: "Utkarsh Roy Choudhury",
     description: "Geographer · Political Ecologist · Researcher",

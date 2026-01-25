@@ -53,7 +53,7 @@ export default function Hero() {
             variants={itemVariants}
             className="text-text-secondary text-sm md:text-base uppercase tracking-[0.15em] mb-6"
           >
-            Climate & Biodiversity Policy Researcher · Program Coordination · Mixed-Methods Research
+            Climate & Biodiversity Researcher | Policy & Program Management
           </motion.p>
 
           {/* Name - Main Headline */}
@@ -74,8 +74,7 @@ export default function Hero() {
             variants={itemVariants}
             className="mt-8 text-text-secondary text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
           >
-            I research how governments, corporations, and communities navigate environmental governance
-            with a focus on climate finance, river restoration, and biodiversity conservation.
+            Research, policy analysis, and program coordination at the intersection of climate finance and environmental/biodiversity governance.
           </motion.p>
 
           {/* Now Section */}

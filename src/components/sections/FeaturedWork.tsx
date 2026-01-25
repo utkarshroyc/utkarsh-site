@@ -18,10 +18,10 @@ const projects = [
     href: "/projects/seeing-animals-like-a-state",
   },
   {
-    title: "Project Disha",
-    category: "UNDP Partnership",
-    description: "Multi-state initiative to skill 1 million women",
-    href: "/projects/project-disha",
+    title: "Toasted",
+    category: "Digital Publication",
+    description: "Exploring climate anxiety and ecological grief",
+    href: "/projects/toasted",
   },
 ];
 

@@ -4,7 +4,7 @@ import { Mail, Linkedin, BookOpen, Globe } from "lucide-react";
 const socialLinks = [
   { href: "mailto:uchoudhury@crimson.ua.edu", icon: Mail, label: "Email" },
   { href: "https://linkedin.com/in/utkarsh-roy-choudhury-816162ba/", icon: Linkedin, label: "LinkedIn" },
-  { href: "https://scholar.google.com", icon: BookOpen, label: "Google Scholar" },
+  { href: "https://scholar.google.com/citations?user=gWzksQwAAAAJ&hl=en", icon: BookOpen, label: "Google Scholar" },
   { href: "https://orcid.org/0000-0001-6446-1138", icon: Globe, label: "ORCID" },
 ];
 
@@ -74,9 +74,6 @@ export default function Footer() {
         <div className="mt-16 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-text-tertiary text-sm">
             © {currentYear} Utkarsh Roy Choudhury
-          </p>
-          <p className="text-text-tertiary text-sm">
-            Mapping human-environment relations
           </p>
         </div>
       </div>

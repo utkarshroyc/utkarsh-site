@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { Download, Mail, MapPin, Phone } from "lucide-react";
+import { Download, Mail, MapPin } from "lucide-react";
 
 type ResumeType = "academic" | "industry";
 
@@ -46,6 +46,11 @@ const academicCV = {
         venue: "Geoforum",
         status: "Under Review",
       },
+      {
+        citation: "Choudhury, U.R. (In Preparation). \"How will the turtles know?\": Ecological Substitution and the Act of replacing a Wildlife Sanctuary on the Ganga River.",
+        venue: "Transactions of the Institute of British Geographers",
+        status: "In Preparation",
+      },
     ],
     policyReports: [
       {
@@ -69,26 +74,46 @@ const academicCV = {
     "Infrastructure Studies",
   ],
   awards: [
-    { title: "Dr. Bobby Wilson Award for Environmental Justice Scholarship", amount: "$1,000", org: "University of Alabama", year: "2024" },
-    { title: "Levitetz Innovation Seed Grant", amount: "$1,000", org: "University of Alabama", year: "2023" },
-    { title: "Research & Travel Funding", amount: "$10,850+", org: "University of Alabama Graduate School", year: "2023-26" },
+    { title: "Research & Travel Funding", amount: "$7,100", org: "UA Graduate School & Department of Geography", year: "2023-2026" },
+    { title: "SEDAAG Conference Funding", amount: "$150", org: "SEDAAG", year: "2025" },
+    { title: "International Activity Funding", amount: "$500", org: "Capstone International Center", year: "2024" },
+    { title: "Dr. Bobby Wilson Award for Environmental Justice Scholarship", amount: "$1,000", org: "UA Department of Geography", year: "2024" },
+    { title: "Levitetz Innovation Seed Grant", amount: "$1,000", org: "Levitetz Leadership Program", year: "2023" },
   ],
   presentations: [
-    { title: "Maintained disrepair: accumulation by rejuvenation...", venue: "SEDAAG, Lexington, KY", year: "2025" },
+    { title: "Maintained disrepair: accumulation by rejuvenation, financialization, and the politics of sacred spectacle in India's Namami Gange Program", venue: "SEDAAG, Lexington, KY", year: "2025" },
     { title: "Stuck in a temporal loop: The securitization, extraction, and conservation nexus in India", venue: "AAG, Detroit, MI", year: "2025" },
-    { title: "Between Symbolic Mascots and Endangered Inhabitants...", venue: "DOPE+, Lexington, KY", year: "2024" },
+    { title: "Seeing Animals Like a State? Divergent forester subjectivities towards managing human-wildlife conflicts in South India (with Jared Margulies)", venue: "AAG Virtual", year: "2024" },
+    { title: "Between Symbolic Mascots and Endangered Inhabitants: The Contested Spaces of Aquatic Wildlife in the Ganga", venue: "DOPE+, Lexington, KY", year: "2024" },
     { title: "Against the Flow: Unpacking contemporary river and wildlife conservation politics in India", venue: "AAG, Denver, CO", year: "2023" },
+    { title: "COVID-19: The Great Equalizer? (Invited)", venue: "New Chance Better World Online Youth Meet", year: "2020" },
+  ],
+  organizedSessions: [
+    { title: "Corridors of Ecological Power: Navigating the Environmental State", venue: "AAG, Detroit, MI", year: "2025", coOrganizer: "P. Prajapati" },
+    { title: "Animal Geography Graduate Student Paper Competition", venue: "AAG, Detroit, MI", year: "2025", coOrganizer: "JH Pitas" },
+  ],
+  teaching: [
+    { course: "GY101 Atmospheric Processes & Patterns", role: "Head GTA", period: "2023-26" },
+    { course: "GY102 Earth System Processes", role: "GTA", period: "2024, 2026" },
+    { course: "GY377 Cultural Geography", role: "Guest Lecturer", period: "2023" },
+    { course: "GY101 Atmospheric Processes & Patterns", role: "GTA", period: "2021-23" },
   ],
   leadership: [
     { role: "Board Member", org: "AAG Animal Geography Specialty Group", year: "2025-26" },
-    { role: "Forum Panel Reviewer", org: "IUCN World Conservation Congress", year: "2025" },
-    { role: "Vice President", org: "Graduate Association for Geography and Environmental Studies, University of Alabama", year: "2025-26" },
+    { role: "Student Board Member", org: "AAG Animal Geography Specialty Group", year: "2023-25" },
+    { role: "Forum Panel Reviewer", org: "IUCN World Conservation Congress 2025", year: "2025" },
+    { role: "Vice President", org: "Graduate Association for Geography and Environmental Studies, UA", year: "2025-26" },
+    { role: "Treasurer", org: "Graduate Association for Geography and Environmental Studies, UA", year: "2024-25" },
+    { role: "Judge", org: "UA Undergraduate Research and Creative Activity Conference", year: "2023, 2024" },
+    { role: "Graduate Student Advocacy Committee", org: "House of Delegates, Graduate Student Association, UA", year: "2023-24" },
     { role: "Reviewer", org: "Global Development Network -- Global Development Awards Competition", year: "2024" },
     { role: "Conference Organizer", org: "Dimensions of Political Ecology (DOPE+) 2024", year: "2023-24" },
+    { role: "Conference Assistant", org: "AAG Annual Meeting, Denver, CO", year: "2023" },
+    { role: "Conference Volunteer", org: "POLLEN (Political Ecology Network) Conference", year: "2020" },
   ],
   affiliations: [
-    "American Association of Geographers (AAG)",
-    "Southeast Division of AAG (SEDAAG)",
+    { name: "American Association of Geographers (AAG)", year: "2021-" },
+    { name: "Southeast Division of AAG (SEDAAG)", year: "2025-" },
   ],
 };
 
@@ -111,7 +136,7 @@ const industryResume = {
         "Managed IRB-compliant data collection processes and administered a $10,000+ research budget, coordinating field logistics across multiple research sites.",
         "Synthesized complex policy and financial documents to produce actionable governance recommendations on environmental restoration programs worth $3+ billion.",
         "Authored peer-reviewed publications and policy briefs translating research findings for academic and practitioner audiences.",
-        "Presented research at 10+ national and international conferences, building networks with researchers, policymakers, and conservation practitioners.",
+        "Presented research at 6 national and international conferences, building networks with researchers, policymakers, and conservation practitioners.",
       ],
     },
     {
@@ -155,7 +180,7 @@ const industryResume = {
       period: "September 2019 - June 2020",
       highlights: [
         "Designed and implemented a mixed-methods organizational review involving 2 surveys, 61 interviews, and 10 focus groups to evaluate governance structures and inform strategic restructuring.",
-        "Launched and managed \"Free Wednesdays\" period poverty initiative, administering a £3,000 budget and coordinating a team of 10 volunteers for weekly resource distribution.",
+        "Managed \"Free Wednesdays\" period poverty initiative, administering a £3,000 budget and coordinating a team of 10 volunteers for weekly resource distribution.",
         "Conducted rapid-response policy analysis on the educational impact of COVID-19, influencing institutional diversity, equity, and inclusion (DEI) strategies.",
         "Provided strategic administrative and operational support to elected student officials to deliver on campaign goals.",
       ],
@@ -186,7 +211,7 @@ const industryResume = {
     },
     {
       title: "Data Analyst / Survey Analyst",
-      company: "Maharashtra State Housing Action League (MSHAL)",
+      company: "Maharashtra State Housing Action League (MASHAL)",
       location: "Pune, India",
       period: "November 2017 - January 2018",
       highlights: [
@@ -251,12 +276,9 @@ export default function ResumePage() {
               transition={{ duration: 0.6 }}
               className="text-center"
             >
-              <h1 className="font-display font-bold text-4xl md:text-5xl tracking-tight mb-4">
+              <h1 className="font-display font-bold text-4xl md:text-5xl tracking-tight mb-8">
                 Resume
               </h1>
-              <p className="text-text-secondary text-lg mb-8">
-                Academic CV and Industry Experience
-              </p>
 
               {/* Toggle Switch */}
               <div className="inline-flex items-center p-1 bg-bg-card border border-border rounded-full">
@@ -433,15 +455,48 @@ export default function ResumePage() {
 
                   {/* Presentations */}
                   <div className="mb-12">
-                    <h3 className="font-display font-bold text-xl mb-6 pb-2 border-b border-border">Selected Presentations</h3>
+                    <h3 className="font-display font-bold text-xl mb-6 pb-2 border-b border-border">Conference Presentations</h3>
                     <div className="space-y-3">
                       {academicCV.presentations.map((pres, i) => (
                         <div key={i} className="flex flex-wrap justify-between items-start gap-2">
                           <div>
-                            <p className="text-text-primary">&ldquo;{pres.title}&rdquo;</p>
+                            <p className="text-text-primary">{pres.title}</p>
                             <p className="text-text-tertiary text-sm">{pres.venue}</p>
                           </div>
                           <span className="text-accent text-sm font-mono">{pres.year}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Organized Sessions */}
+                  <div className="mb-12">
+                    <h3 className="font-display font-bold text-xl mb-6 pb-2 border-b border-border">Organized Sessions</h3>
+                    <div className="space-y-3">
+                      {academicCV.organizedSessions.map((session, i) => (
+                        <div key={i} className="flex flex-wrap justify-between items-start gap-2">
+                          <div>
+                            <p className="text-text-primary">{session.title}</p>
+                            <p className="text-text-tertiary text-sm">{session.venue} · with {session.coOrganizer}</p>
+                          </div>
+                          <span className="text-accent text-sm font-mono">{session.year}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Teaching Experience */}
+                  <div className="mb-12">
+                    <h3 className="font-display font-bold text-xl mb-6 pb-2 border-b border-border">Teaching Experience</h3>
+                    <p className="text-text-tertiary text-sm mb-4">University of Alabama</p>
+                    <div className="space-y-3">
+                      {academicCV.teaching.map((course, i) => (
+                        <div key={i} className="flex flex-wrap justify-between items-start gap-2">
+                          <div>
+                            <p className="text-text-primary">{course.course}</p>
+                            <p className="text-text-tertiary text-sm">{course.role}</p>
+                          </div>
+                          <span className="text-accent text-sm font-mono">{course.period}</span>
                         </div>
                       ))}
                     </div>
@@ -466,14 +521,12 @@ export default function ResumePage() {
                   {/* Affiliations */}
                   <div>
                     <h3 className="font-display font-bold text-xl mb-6 pb-2 border-b border-border">Professional Affiliations</h3>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="space-y-2">
                       {academicCV.affiliations.map((aff) => (
-                        <span
-                          key={aff}
-                          className="px-3 py-1.5 bg-bg-hover border border-border rounded-full text-sm text-text-secondary"
-                        >
-                          {aff}
-                        </span>
+                        <div key={aff.name} className="flex flex-wrap justify-between items-center gap-2">
+                          <span className="text-text-secondary">{aff.name}</span>
+                          <span className="text-accent text-sm font-mono">{aff.year}</span>
+                        </div>
                       ))}
                     </div>
                   </div>
@@ -491,7 +544,6 @@ export default function ResumePage() {
                     <h2 className="font-display font-bold text-2xl mb-2">Utkarsh Roy Choudhury</h2>
                     <div className="flex flex-wrap gap-4 text-text-secondary text-sm">
                       <span className="flex items-center gap-1"><MapPin size={14} /> Tuscaloosa, AL, USA</span>
-                      <span className="flex items-center gap-1"><Phone size={14} /> +1 205-887-9619</span>
                       <a href="mailto:uchoudhury@crimson.ua.edu" className="text-accent hover:text-accent-hover flex items-center gap-1">
                         <Mail size={14} /> uchoudhury@crimson.ua.edu
                       </a>

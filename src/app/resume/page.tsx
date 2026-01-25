@@ -13,7 +13,7 @@ const academicCV = {
     {
       degree: "Ph.D., Geography (Environmental Governance & Political Ecology)",
       institution: "University of Alabama",
-      year: "Expected May 2026",
+      year: "May 2026",
       details: "Advisor: Dr. Jared Margulies\nDissertation: \"The Unfinished River: A Political Ecology of Restoration and Nonhuman Erasure on the Ganga River\"",
     },
     {
@@ -115,14 +115,26 @@ const industryResume = {
       ],
     },
     {
-      title: "Head Graduate Teaching Assistant",
+      title: "Program Coordinator & Head Teaching Assistant",
       company: "University of Alabama, Department of Geography and the Environment",
       location: "Tuscaloosa, AL",
-      period: "August 2023 - Present",
+      period: "August 2021 - Present",
       highlights: [
-        "Supervised and trained a team of 15 Graduate Teaching Assistants; standardized instructional delivery and operational workflows for a program serving 600+ students.",
-        "Designed curriculum materials, coordinated scheduling, and conducted performance evaluations to ensure consistent educational quality.",
-        "Facilitated workshops and training sessions for new teaching assistants on pedagogical best practices.",
+        "Coordinating instructional operations for a large introductory science program serving 800+ students per semester.",
+        "Supervised and trained a team of 10-15 graduate assistants, standardizing workflows, managing schedules, and ensuring consistent delivery across multiple lab sections.",
+        "Developed onboarding materials and facilitated training sessions for new teaching staff, improving instructional quality and team cohesion.",
+        "Served as primary liaison between faculty, graduate assistants, and students, resolving issues and maintaining clear communication across stakeholders.",
+      ],
+    },
+    {
+      title: "Graduate Research Assistant",
+      company: "University of Alabama, Department of Geography and the Environment",
+      location: "Tuscaloosa, AL",
+      period: "May 2022 - August 2022",
+      highlights: [
+        "Supported faculty research on human-wildlife conflict and conservation governance in South India.",
+        "Contributed to data analysis and manuscript preparation for a peer-reviewed publication on forester decision-making in wildlife management.",
+        "Conducted literature reviews and synthesized findings on conservation policy and stakeholder dynamics.",
       ],
     },
     {
@@ -149,15 +161,27 @@ const industryResume = {
       ],
     },
     {
-      title: "Policy & Strategy Associate -- Project Disha",
+      title: "Policy Research Associate",
+      company: "UNDP Maharashtra",
+      location: "Mumbai, India",
+      period: "April 2018 - June 2018",
+      highlights: [
+        "Supported UNDP Maharashtra's initiatives on rural livelihoods and sustainable development.",
+        "Drafted policy briefs and concept notes on rural entrepreneurship and livelihood programs, informing state government planning and CSR partnership strategies.",
+        "Prepared action plans and communication materials to support pilot project implementation and monitoring.",
+        "Coordinated with government agencies and corporate partners to align program objectives with state development mandates.",
+      ],
+    },
+    {
+      title: "Program & Strategy Associate -- Project Disha",
       company: "United Nations Development Programme (UNDP) & IKEA Foundation Partnership",
       location: "Pune, India",
-      period: "January 2017 - June 2018",
+      period: "January 2017 - July 2017",
       highlights: [
         "Co-authored strategic concept notes for Project Disha, a multi-state initiative partnering with IKEA Foundation to skill 1 million women across Maharashtra, Telangana, and Odisha.",
         "Facilitated high-level policy coordination between 5+ state government bodies, corporate CSR partners, and civil society organizations.",
         "Developed Monitoring & Evaluation (M&E) frameworks and tracking tools to monitor pilot project implementation, ensuring alignment with donor requirements and state mandates.",
-        "Prepared action plans and communication materials to support program implementation and stakeholder engagement.",
+        "Created communication materials and action plans for program rollout across Maharashtra.",
       ],
     },
     {
@@ -190,6 +214,16 @@ const industryResume = {
       period: "September 2016 - November 2016",
       highlights: [
         "Developed communication materials to help the UNV Regional Office for Asia and the Pacific engage with stakeholders and communicate its mandate consistently.",
+      ],
+    },
+    {
+      title: "Design & Communications Volunteer",
+      company: "United Nations System Staff College for Sustainable Development",
+      location: "Bonn, Germany",
+      period: "March 2016 - April 2016",
+      highlights: [
+        "Supported a newly established UN office with visual communications.",
+        "Designed graphics for outreach materials including flyers and brochures, contributing to the office's initial stakeholder engagement efforts.",
       ],
     },
   ],

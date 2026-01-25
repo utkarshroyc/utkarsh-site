@@ -82,7 +82,7 @@ export default function AboutPage() {
                     <ExternalLink size={14} className="ml-auto text-text-tertiary" />
                   </a>
                   <a
-                    href="#"
+                    href="https://scholar.google.com/citations?user=YOUR_ID"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 p-3 bg-bg-card border border-border rounded-lg hover:border-accent transition-colors group"
@@ -118,11 +118,11 @@ export default function AboutPage() {
 
                 <div className="prose prose-invert max-w-none space-y-6">
                   <p className="text-text-secondary leading-relaxed">
-                    I am a political ecologist and environmental geographer driven by a single question: How do we build just futures for both people and the wildlife we share the planet with? My work exists at the intersection of <span className="text-text-primary">conservation governance</span> and <span className="text-text-primary">environmental justice</span>.
+                    I research how governments, corporations, and communities navigate <span className="text-text-primary">environmental governance</span> with a focus on climate finance, river restoration, and biodiversity conservation. My work sits at the intersection of <span className="text-text-primary">policy analysis</span> and on-the-ground realities.
                   </p>
 
                   <p className="text-text-secondary leading-relaxed">
-                    Currently, I am a PhD Candidate in Geography at the University of Alabama, where my dissertation, <span className="text-accent">"The Unfinished River,"</span> investigates the political ecology of restoration along India's Ganga River. I examine how massive state-led infrastructure projects reshape relationships between humans and aquatic biodiversity—and who (or what) is overlooked in the process.
+                    I am completing my PhD in Geography at the University of Alabama (May 2026), where my dissertation, <span className="text-accent">"The Unfinished River,"</span> examines how large-scale conservation programs actually unfold and who benefits. I conducted 40+ stakeholder interviews across India with government officials, NGO scientists, and industry actors.
                   </p>
 
                   <h2 className="font-display font-bold text-xl text-text-primary mt-10 mb-4">
@@ -130,7 +130,7 @@ export default function AboutPage() {
                   </h2>
 
                   <p className="text-text-secondary leading-relaxed">
-                    Before entering the world of deep academic research, I spent years working at the sharp end of policy and practice. My background is rooted in international development and cross-sector coordination:
+                    Before entering the world of deep academic research, I spent years working at the end of policy and practice. My background is rooted in international development and cross-sector coordination:
                   </p>
 
                   <ul className="space-y-3 text-text-secondary">
@@ -226,7 +226,7 @@ export default function AboutPage() {
                   "Climate-Tech Startups",
                   "Environmental Policy",
                   "Program Management",
-                  "Research Analysis"
+                  "Think Tanks"
                 ].map((sector) => (
                   <span
                     key={sector}

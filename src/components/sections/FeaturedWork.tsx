@@ -18,10 +18,10 @@ const projects = [
     href: "/projects/seeing-animals-like-a-state",
   },
   {
-    title: "GAGES",
-    category: "Technical Research",
-    description: "Geospatial analysis of Ganges ecosystem services",
-    href: "/projects/gages",
+    title: "Project Disha",
+    category: "UNDP Partnership",
+    description: "Multi-state initiative to skill 1 million women",
+    href: "/projects/project-disha",
   },
 ];
 

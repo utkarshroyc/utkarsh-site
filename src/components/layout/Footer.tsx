@@ -12,7 +12,6 @@ const navLinks = [
   { href: "/about", label: "About" },
   { href: "/resume", label: "Resume" },
   { href: "/projects", label: "Projects" },
-  { href: "/maps", label: "Maps" },
   { href: "/writing", label: "Writing" },
 ];
 
@@ -32,9 +31,8 @@ export default function Footer() {
               Utkarsh Roy Choudhury
             </Link>
             <p className="mt-4 text-text-secondary max-w-md">
-              PhD Candidate in Geography at the University of Alabama, studying
-              river governance, environmental politics, and human-wildlife
-              relations.
+              Climate & Biodiversity Policy Researcher at the University of Alabama,
+              focusing on environmental governance, climate finance, and conservation.
             </p>
 
             {/* Social Links */}

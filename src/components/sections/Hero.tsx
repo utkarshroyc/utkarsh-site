@@ -53,7 +53,7 @@ export default function Hero() {
             variants={itemVariants}
             className="text-text-secondary text-sm md:text-base uppercase tracking-[0.15em] mb-6"
           >
-            Environmental Geographer · Political Ecologist · Biodiversity Specialist
+            Climate & Biodiversity Policy Researcher · Program Coordination · Mixed-Methods Research
           </motion.p>
 
           {/* Name - Main Headline */}
@@ -74,9 +74,8 @@ export default function Hero() {
             variants={itemVariants}
             className="mt-8 text-text-secondary text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
           >
-            I study the politics of nature. As a PhD Candidate at the University of Alabama,
-            I investigate how states, institutions, and communities negotiate environmental restoration—bridging
-            rigorous academic research with actionable strategy.
+            I research how governments, corporations, and communities navigate environmental governance
+            with a focus on climate finance, river restoration, and biodiversity conservation.
           </motion.p>
 
           {/* Now Section */}
@@ -86,7 +85,7 @@ export default function Hero() {
           >
             <p className="text-accent text-xs uppercase tracking-wider mb-2 font-mono">Currently Seeking</p>
             <p className="text-text-secondary text-sm">
-              2026 roles in Program Management, Research Analysis, or Environmental Policy
+              Roles in Program Management, Policy Analysis, or Research
             </p>
           </motion.div>
 

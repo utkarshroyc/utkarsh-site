@@ -108,7 +108,7 @@ export default function AboutPage() {
 
                 <div className="prose prose-invert max-w-none space-y-6">
                   <p className="text-text-secondary leading-relaxed">
-                    I research how governments, corporations, and communities navigate <span className="text-text-primary">environmental governance</span> with a focus on climate finance, river restoration, and biodiversity conservation. My work sits at the intersection of <span className="text-text-primary">policy analysis</span> and on-the-ground realities.
+                    I research how governments, corporations, and communities navigate <span className="text-text-primary">environmental governance</span> with a focus on the financialization of nature, river restoration, and biodiversity conservation. My work sits at the intersection of <span className="text-text-primary">policy analysis</span> and on-the-ground realities.
                   </p>
 
                   <p className="text-text-secondary leading-relaxed">

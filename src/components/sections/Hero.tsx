@@ -74,7 +74,7 @@ export default function Hero() {
             variants={itemVariants}
             className="mt-8 text-text-secondary text-lg md:text-xl max-w-2xl mx-auto leading-relaxed"
           >
-            Research, policy analysis, and program coordination at the intersection of climate finance and environmental/biodiversity governance.
+            Research, policy analysis, and program coordination at the intersection of the financialization of nature and environmental/biodiversity governance.
           </motion.p>
 
           {/* Now Section */}

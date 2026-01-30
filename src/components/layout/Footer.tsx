@@ -32,7 +32,7 @@ export default function Footer() {
             </Link>
             <p className="mt-4 text-text-secondary max-w-md">
               Climate & Biodiversity Policy Researcher at the University of Alabama,
-              focusing on environmental governance, climate finance, and conservation.
+              focusing on environmental governance, the financialization of nature, and conservation.
             </p>
 
             {/* Social Links */}

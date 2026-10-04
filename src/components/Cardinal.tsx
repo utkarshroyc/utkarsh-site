@@ -2,36 +2,66 @@
 
 import { useEffect, useRef, useState } from "react";
 
-// A cardinal that perches on the current section's heading line and hops to the next
-// one as you scroll. A nod to "tuscaloosa, or something like it".
+// A cardinal that perches on a rule line: first the masthead, then each section's
+// heading as you scroll, flying between them. A nod to "tuscaloosa, or something like it".
 
 const ESSAY = "https://slightlyunfinished.substack.com/p/tuscaloosa-or-something-like-it";
 const BIRD_H = 28;
+const PERCHES = ".masthead > .meta, main section > h2.label";
+
+// Longer trips take longer, but every flight is slow enough to watch.
+const flightMs = (distance: number) => Math.round(Math.min(3200, 1400 + distance * 1.6));
 
 export default function Cardinal() {
+  const ref = useRef<HTMLAnchorElement>(null);
   const [top, setTop] = useState<number | null>(null);
-  const [hopping, setHopping] = useState(false);
+  const [flight, setFlight] = useState<{ ms: number; key: number } | null>(null);
   const last = useRef<number | null>(null);
+  const landing = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   useEffect(() => {
-    const headings = () => [...document.querySelectorAll<HTMLElement>("main section > h2.label")];
     let frame = 0;
     const place = () => {
       frame = 0;
-      const hs = headings();
-      if (!hs.length) return;
-      const line = window.scrollY + window.innerHeight * 0.45;
+      const page = ref.current?.offsetParent ?? document.querySelector("main");
+      const perches = [...document.querySelectorAll<HTMLElement>(PERCHES)];
+      if (!page || !perches.length) return;
+
+      // Perch positions in the page's coordinate space (bottom of each rule line).
+      const pageTop = page.getBoundingClientRect().top;
+      const lines = perches.map((el) => el.getBoundingClientRect().bottom - pageTop);
+
+      const viewTop = -pageTop; // scroll offset relative to the page
+      const focus = viewTop + window.innerHeight * 0.45;
       const atBottom = window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4;
-      const current = atBottom ? hs[hs.length - 1] : (hs.filter((h) => h.offsetTop <= line).pop() ?? hs[0]);
-      const next = current.offsetTop + current.offsetHeight - BIRD_H + 1;
-      if (next !== last.current) {
-        if (last.current !== null) {
-          setHopping(true);
-          setTimeout(() => setHopping(false), 650);
-        }
-        last.current = next;
+      const i = atBottom ? lines.length - 1 : Math.max(0, lines.filter((y) => y <= focus).length - 1);
+      const next = Math.round(lines[i] - BIRD_H + 1);
+
+      if (next === last.current) return;
+      const from = last.current;
+      last.current = next;
+      if (from === null) {
         setTop(next);
+        return;
       }
+
+      // If the old perch has scrolled out of view, slip the bird to just past the
+      // screen edge first so the whole flight happens where it can be seen.
+      const edgeTop = viewTop - BIRD_H - 8;
+      const edgeBottom = viewTop + window.innerHeight + 8;
+      const start = from < edgeTop ? edgeTop : from > edgeBottom ? edgeBottom : from;
+      const el = ref.current;
+      if (el && start !== from) {
+        el.style.transition = "none";
+        el.style.top = `${start}px`;
+        void el.offsetHeight; // commit the jump before the flight transition starts
+        el.style.transition = "";
+      }
+      const ms = flightMs(Math.abs(next - start));
+      setFlight({ ms, key: Date.now() });
+      setTop(next);
+      clearTimeout(landing.current);
+      landing.current = setTimeout(() => setFlight(null), ms);
     };
     const onScroll = () => {
       if (!frame) frame = requestAnimationFrame(place);
@@ -43,24 +73,30 @@ export default function Cardinal() {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
       cancelAnimationFrame(frame);
+      clearTimeout(landing.current);
     };
   }, []);
 
-  if (top === null) return null;
   return (
     <a
+      ref={ref}
       href={ESSAY}
       target="_blank"
       rel="noopener noreferrer"
-      className={`cardinal${hopping ? " is-hopping" : ""}`}
-      style={{ top }}
+      className={`cardinal${flight ? " is-flying" : ""}`}
+      style={
+        {
+          top: top ?? 0,
+          visibility: top === null ? "hidden" : undefined,
+          "--fly-ms": `${flight?.ms ?? 1400}ms`,
+        } as React.CSSProperties
+      }
       aria-label="A cardinal. Read “tuscaloosa, or something like it”"
       data-tip="cardinals stay put. I didn't."
     >
-      <svg viewBox="0 0 32 28" width="32" height={BIRD_H} aria-hidden="true">
+      <svg key={flight?.key} viewBox="0 0 32 28" width="32" height={BIRD_H} aria-hidden="true">
         <path d="M3 17l7-3 1.2 5L4 22z" fill="#9e1b2f" />
         <ellipse cx="16" cy="16" rx="8" ry="6.5" fill="#d7263d" />
-        <path d="M12 13c5-2 9 0 9.6 2.8-3.6 3.4-7.6 3.6-10.6 1.6z" fill="#b51d32" />
         <g className="cardinal-head">
           <path d="M19.4 7.4L17.6 1.6l5.6 4.8z" fill="#d7263d" />
           <circle cx="22" cy="10" r="4.6" fill="#d7263d" />
@@ -68,7 +104,8 @@ export default function Cardinal() {
           <path d="M25.4 9.4L30 11l-4.6 1.6z" fill="#f4a259" />
           <circle cx="23.5" cy="10.1" r=".7" fill="#f5f0e6" />
         </g>
-        <path d="M15 22l-.8 5M18.2 22l.6 5" stroke="#7a5a45" strokeWidth="1.2" strokeLinecap="round" />
+        <path className="cardinal-wing" d="M12 13c5-2 9 0 9.6 2.8-3.6 3.4-7.6 3.6-10.6 1.6z" fill="#b51d32" />
+        <path className="cardinal-legs" d="M15 22l-.8 5M18.2 22l.6 5" stroke="#7a5a45" strokeWidth="1.2" strokeLinecap="round" />
       </svg>
     </a>
   );

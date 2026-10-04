@@ -752,36 +752,55 @@ section {
   transform: none;
 }
 
-/* The cardinal perches at the right end of the current section's rule. */
+/* The cardinal perches at the right end of a rule line and flies between them. */
 .cardinal {
   position: absolute;
   right: 20px;
   z-index: 4;
   display: block;
   line-height: 0;
-  transition: top 600ms cubic-bezier(0.5, 0, 0.3, 1);
+  transition: top var(--fly-ms) cubic-bezier(0.45, 0, 0.35, 1);
 }
 .cardinal svg {
   display: block;
   overflow: visible;
 }
-.cardinal.is-hopping svg {
-  animation: hop 600ms cubic-bezier(0.3, 0, 0.3, 1);
+.cardinal.is-flying svg {
+  animation: swoop var(--fly-ms) ease-in-out;
+}
+.cardinal.is-flying .cardinal-wing {
+  animation: flap 180ms ease-in-out infinite alternate;
+}
+.cardinal.is-flying .cardinal-legs {
+  opacity: 0;
+  transition: opacity 150ms;
+}
+.cardinal-wing {
+  transform-box: fill-box;
+  transform-origin: 70% 20%;
 }
 .cardinal-head {
   transform-box: fill-box;
   transform-origin: 30% 80%;
   animation: peck 5s ease-in-out infinite;
 }
+.cardinal.is-flying .cardinal-head {
+  animation: none;
+}
 .cardinal:hover .cardinal-head {
   animation-duration: 0.9s;
 }
-@keyframes hop {
-  0% { transform: translateY(0) rotate(0); }
-  20% { transform: translateY(2px) scaleY(0.9); }
-  55% { transform: translateY(-34px) rotate(-8deg); }
-  85% { transform: translateY(0) rotate(4deg); }
-  100% { transform: translateY(0) rotate(0); }
+/* Take off, arc out over the page, and land back on the right edge. */
+@keyframes swoop {
+  0% { transform: translate(0, 0) rotate(0); }
+  12% { transform: translate(-10px, -26px) rotate(-14deg); }
+  50% { transform: translate(-110px, -40px) rotate(-6deg) scale(1.08); }
+  85% { transform: translate(-16px, -14px) rotate(8deg); }
+  100% { transform: translate(0, 0) rotate(0); }
+}
+@keyframes flap {
+  from { transform: scaleY(1) rotate(0); }
+  to { transform: scaleY(-0.7) rotate(-18deg); }
 }
 @keyframes peck {
   0%, 82%, 100% { transform: rotate(0); }

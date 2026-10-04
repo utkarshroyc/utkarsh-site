@@ -3,15 +3,15 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 
 // Visitor pins: "where are you reading from?"
-// Production uses Upstash Redis over its REST API (UPSTASH_REDIS_REST_URL / _TOKEN,
-// which Vercel's Upstash integration sets). Without those, development falls back to a
+// Production uses Upstash Redis over its REST API. Vercel's integration names the
+// credentials either UPSTASH_REDIS_REST_URL/_TOKEN or KV_REST_API_URL/_TOKEN. Without those, development falls back to a
 // local JSON file so the feature can be tried; deployed without Redis, it switches off.
 
 export type Pin = { lat: number; lon: number; t: number };
 
 const MAX_PINS = 2000;
-const URL = process.env.UPSTASH_REDIS_REST_URL;
-const TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN;
+const URL = process.env.UPSTASH_REDIS_REST_URL ?? process.env.KV_REST_API_URL;
+const TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN ?? process.env.KV_REST_API_TOKEN;
 const FILE = path.join(process.cwd(), ".data", "pins.json");
 const local = !URL && process.env.NODE_ENV === "development";
 

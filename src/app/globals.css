@@ -576,6 +576,10 @@ section {
 }
 
 @media (max-width: 560px) {
+  /* The corner readout would sit on top of body text on a phone. */
+  .coords {
+    display: none;
+  }
   body {
     font-size: 17px;
   }

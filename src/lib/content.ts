@@ -20,7 +20,7 @@ export const logos = {
   worked: [
     { name: "Coral", src: "/logos/coral.svg", h: 18, tip: "Operations & Research · 2026—" },
     { name: "Work on Climate", src: "/logos/work-on-climate.svg", h: 16, tip: "Work on Climate" },
-    { name: "Upcyclio", src: "/logos/upcyclio.jpg", h: 24, tip: "Co-founder · 2017–19" },
+    { name: "Upcyclio", src: "/logos/upcyclio.png", h: 24, tip: "Co-founder · 2017–19" },
     { name: "UNDP", src: "/logos/undp.svg", h: 40, tip: "Policy & Program · 2017–18" },
     { name: "IKEA Foundation", src: "/logos/ikea-foundation.png", h: 30, tip: "Project Disha · 2017" },
     { name: "Institute of Development Studies", src: "/logos/ids.svg", h: 30, tip: "Knowledge Mobilization · 2020" },

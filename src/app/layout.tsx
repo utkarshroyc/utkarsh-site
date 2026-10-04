@@ -28,6 +28,7 @@ export const metadata: Metadata = {
   description,
   authors: [{ name: "Utkarsh Roy Choudhury" }],
   openGraph: { title: "Utkarsh Roy Choudhury", description, type: "website" },
+  twitter: { card: "summary_large_image", title: "Utkarsh Roy Choudhury", description },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

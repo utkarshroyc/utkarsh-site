@@ -1,146 +1,851 @@
 @import "tailwindcss";
 
-/* Design Tokens - Dark Mode Earthy Green */
+/* Night survey map: deep forest green, pale ink, rose annotations. */
 :root {
-  /* Backgrounds */
-  --color-bg-primary: #0A0F0A;
-  --color-bg-secondary: #0D1410;
-  --color-bg-card: #141F18;
-  --color-bg-hover: #1A2A20;
-
-  /* Text */
-  --color-text-primary: #F0F5F1;
-  --color-text-secondary: #9CAF9C;
-  --color-text-tertiary: #5A6B5A;
-
-  /* Accents - Earthy Greens */
-  --color-accent: #4A7C59;
-  --color-accent-hover: #5D9A6E;
-  --color-accent-alt: #8FBC8F;
-
-  /* Secondary Accents - Earth Tones */
-  --color-earth-brown: #8B7355;
-  --color-earth-gold: #B8956E;
-  --color-moss: #6B8E6B;
-
-  /* Borders */
-  --color-border: #1F2F22;
-  --color-border-hover: #2A4030;
-
-  /* Gradients */
-  --gradient-hero: linear-gradient(135deg, #2D5A3D 0%, #1A3D2A 100%);
-  --gradient-accent: linear-gradient(90deg, #4A7C59, #8FBC8F);
-  --gradient-card: linear-gradient(145deg, #141F18, #0A0F0A);
-
-  /* Contour line colors */
-  --color-contour-1: rgba(74, 124, 89, 0.15);
-  --color-contour-2: rgba(143, 188, 143, 0.1);
-  --color-contour-3: rgba(107, 142, 107, 0.08);
-}
-
-@theme inline {
-  /* Colors */
-  --color-bg-primary: var(--color-bg-primary);
-  --color-bg-secondary: var(--color-bg-secondary);
-  --color-bg-card: var(--color-bg-card);
-  --color-bg-hover: var(--color-bg-hover);
-  --color-text-primary: var(--color-text-primary);
-  --color-text-secondary: var(--color-text-secondary);
-  --color-text-tertiary: var(--color-text-tertiary);
-  --color-accent: var(--color-accent);
-  --color-accent-hover: var(--color-accent-hover);
-  --color-accent-alt: var(--color-accent-alt);
-  --color-border: var(--color-border);
-  --color-border-hover: var(--color-border-hover);
-  --color-earth-brown: var(--color-earth-brown);
-  --color-earth-gold: var(--color-earth-gold);
-  --color-moss: var(--color-moss);
-
-  /* Fonts */
-  --font-display: var(--font-display);
-  --font-body: var(--font-body);
-}
-
-/* Base styles */
-* {
-  box-sizing: border-box;
+  color-scheme: dark;
+  --paper: #0d1913;
+  --ink: #e4ece0;
+  --ink-2: #a7b8a6;
+  --ink-3: #6e8571;
+  --rule: #223a2c;
+  --accent: #ff8ab8; /* rose */
+  --water: #6fb0b8;
+  --contour: #2f5a40;
+  --contour-index: #4f8a62;
+  --land: #14261c;
 }
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--color-bg-primary);
-  color: var(--color-text-primary);
-  font-family: var(--font-body), system-ui, sans-serif;
-  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Typography utilities */
-.font-display {
-  font-family: var(--font-display), system-ui, sans-serif;
-}
-
-.font-body {
-  font-family: var(--font-body), system-ui, sans-serif;
-}
-
-/* Selection */
 ::selection {
-  background: var(--color-accent);
-  color: var(--color-bg-primary);
+  background: var(--accent);
+  color: var(--paper);
 }
 
-/* Focus styles */
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--rule);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color 120ms, text-decoration-color 120ms;
+}
+/* Links get a hand-drawn rose squiggle that inks in on hover. */
+a {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 6'%3E%3Cpath d='M0 3.5 C5 1 8 5.5 13 3.2 S22 1.2 27 3.6 S36 5 40 2.8' fill='none' stroke='%23ff8ab8' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-position: 0 100%;
+  background-size: 0% 6px;
+  transition: color 120ms, text-decoration-color 120ms, background-size 280ms ease-out;
+  padding-bottom: 2px;
+}
+a:hover {
+  color: var(--accent);
+  text-decoration-color: transparent;
+  background-size: 40px 6px;
+}
 :focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
+  border-radius: 2px;
 }
 
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+.arrow {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.7em;
+  margin-left: 0.2em;
+  color: var(--ink-3);
+  text-decoration: none;
+  display: inline-block;
+}
+a:hover .arrow {
+  color: var(--accent);
 }
 
-::-webkit-scrollbar-track {
-  background: var(--color-bg-secondary);
+/* Layout */
+.page {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 72px 20px 48px;
 }
 
-::-webkit-scrollbar-thumb {
-  background: var(--color-border-hover);
+.meta,
+.label {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+  font-weight: 400;
+}
+
+/* Masthead */
+.masthead {
+  position: relative;
+}
+.masthead > :not(.topo) {
+  position: relative;
+}
+.topo {
+  position: absolute;
+  top: -72px;
+  bottom: -20px;
+  left: calc(50% - 50vw);
+  width: 100vw;
+  overflow: hidden;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse 60% 80% at 62% 30%, #000 20%, transparent 70%);
+}
+.topo svg {
+  width: 100%;
+  height: 100%;
+}
+.topo path {
+  fill: none;
+  stroke: var(--contour);
+  stroke-width: 0.8;
+  opacity: 0.55;
+}
+.topo path.index {
+  stroke: var(--contour-index);
+  opacity: 0.5;
+}
+.topo-peak {
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: translate(calc(var(--mx, 0) * var(--depth) * -1px), calc(var(--my, 0) * var(--depth) * -1px));
+  transition: transform 600ms cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+.topo-peak path {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: breathe 14s ease-in-out infinite alternate;
+}
+.topo-peak path:nth-child(odd) {
+  animation-duration: 18s;
+}
+@keyframes breathe {
+  from { transform: scale(0.985) rotate(-0.6deg); }
+  to { transform: scale(1.015) rotate(0.6deg); }
+}
+
+/* 3. Live coordinates: a GPS readout that travels back along the route as you scroll. */
+.coords {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  background: rgb(13 25 19 / 0.85);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  color: var(--ink-2);
+  font-variant-numeric: tabular-nums;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 250ms, transform 250ms;
+  pointer-events: none;
+}
+.coords.is-visible {
+  opacity: 1;
+  transform: none;
+}
+.coords.is-pinned {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.coords .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 0 var(--accent);
+  animation: beacon 2s ease-out infinite;
+}
+@keyframes beacon {
+  0% { box-shadow: 0 0 0 0 rgb(255 138 184 / 0.6); }
+  100% { box-shadow: 0 0 0 8px rgb(255 138 184 / 0); }
+}
+
+.masthead > .meta {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 10px;
+  margin-bottom: 40px;
+}
+.masthead h1 {
+  font-family: var(--font-display), Georgia, serif;
+  font-size: clamp(36px, 7vw, 54px);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  font-weight: 400;
+  margin-bottom: 24px;
+}
+.lede {
+  color: var(--ink-2);
+  font-size: 20px;
+  margin-bottom: 14px;
+  text-wrap: pretty;
+}
+.jump {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+  font-family: var(--font-mono), monospace;
+  font-size: 13px;
+}
+.jump a {
+  text-decoration: none;
+  color: var(--ink-2);
+}
+.jump a::before {
+  content: "→ ";
+  color: var(--ink-3);
+}
+.jump a:hover {
+  color: var(--accent);
+}
+
+/* Logo strip: invert + screen blend renders any logo as pale ink on the green,
+   keeping knocked-out letters (UNDP, IKEA) legible. */
+.logos {
+  margin-top: 48px;
+}
+.logos + .logos {
+  margin-top: 28px;
+}
+.logos ul {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 20px 32px;
+  margin-top: 16px;
+}
+.logos img {
+  display: block;
+  width: auto;
+  filter: grayscale(1) invert(1) contrast(1.6);
+  mix-blend-mode: screen;
+  opacity: 0.55;
+  transition: opacity 150ms;
+}
+.logos li {
+  position: relative;
+}
+.logos li:hover img {
+  opacity: 1;
+}
+.logos li[data-tip]::after {
+  content: attr(data-tip);
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 8px);
+  transform: translate(-50%, -4px);
+  white-space: nowrap;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  color: var(--accent);
+  background: var(--paper);
+  border: 1px solid var(--rule);
   border-radius: 4px;
+  padding: 3px 7px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 150ms, transform 150ms;
+  z-index: 2;
+}
+.logos li:hover::after {
+  opacity: 1;
+  transform: translate(-50%, 0);
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-text-tertiary);
+/* Map */
+.map {
+  margin: 48px 0 8px;
+}
+.world-wrap {
+  position: relative;
+}
+.world {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--rule);
+  cursor: crosshair;
+}
+.world .graticule {
+  fill: none;
+  stroke: var(--rule);
+  stroke-width: 0.5;
+}
+.world .land {
+  fill: var(--land);
+  stroke: var(--contour-index);
+  stroke-width: 0.6;
 }
 
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+/* 1. The route inks itself in; markers land as the line reaches them. */
+.world .route {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.2;
+  stroke-dasharray: 3 4;
+  opacity: 0.85;
+}
+.world .route-mask {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 6;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset var(--draw-ms) cubic-bezier(0.45, 0, 0.25, 1);
+}
+.is-drawn .world .route-mask {
+  stroke-dashoffset: 0;
+}
+.world .place {
+  opacity: 0;
+  transition: opacity 300ms ease-out var(--delay);
+  outline: none;
+  cursor: pointer;
+}
+.is-drawn .world .place {
+  opacity: 1;
+}
+.world .place path {
+  stroke: var(--accent);
+  stroke-width: 1.8;
+  transition: stroke-width 150ms;
+}
+.world .place .hit {
+  fill: transparent;
+}
+.world .place .ring {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.is-drawn .world .place .ring {
+  animation: ping 900ms ease-out var(--delay) 1;
+}
+.world .place text {
+  fill: var(--ink);
+  font-family: var(--font-mono), monospace;
+  font-size: 10px;
+  paint-order: stroke;
+  stroke: var(--paper);
+  stroke-width: 3px;
+  transition: fill 150ms;
+}
+
+/* 2. Highlighted city (from the map or a work row). */
+.world .place.is-active path {
+  stroke-width: 2.6;
+}
+.world .place.is-active text {
+  fill: var(--accent);
+}
+.world .place.is-active .ring {
+  animation: ping 1.4s ease-out infinite;
+}
+@keyframes ping {
+  0% { opacity: 0.9; transform: scale(0.6); }
+  100% { opacity: 0; transform: scale(2.4); }
+}
+
+.map-card {
+  position: absolute;
+  transform: translate(-50%, calc(-100% - 16px));
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 150px;
+  max-width: 220px;
+  padding: 8px 10px;
+  background: var(--paper);
+  border: 1px solid var(--contour-index);
+  border-radius: 6px;
+  font-size: 13px;
+  line-height: 1.35;
+  color: var(--ink-2);
+  pointer-events: none;
+  box-shadow: 0 6px 24px rgb(0 0 0 / 0.35);
+  animation: card-in 160ms ease-out;
+  z-index: 3;
+}
+.map-card strong {
+  font-family: var(--font-display), serif;
+  font-weight: 400;
+  color: var(--ink);
+  font-size: 15px;
+}
+.map-card .meta {
+  color: var(--accent);
+  font-size: 11px;
+}
+@keyframes card-in {
+  from { opacity: 0; transform: translate(-50%, calc(-100% - 10px)); }
+}
+
+/* 8. The hidden river. */
+.world .ganga {
+  fill: none;
+  stroke: var(--water);
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 2.2s ease-in-out;
+}
+.has-river .world .ganga {
+  stroke-dashoffset: 0;
+}
+.world .ganga-label {
+  fill: var(--water);
+  font-family: var(--font-display), serif;
+  font-style: italic;
+  font-size: 11px;
+  opacity: 0;
+  transition: opacity 600ms 1.8s;
+}
+.has-river .world .ganga-label {
+  opacity: 1;
+}
+
+/* 7. Caption doubles as a cursor readout. */
+.map-caption {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+.map-caption span:last-child {
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.map figcaption {
+  margin-top: 8px;
+}
+
+/* Sections */
+section {
+  margin-top: 72px;
+  scroll-margin-top: 24px;
+}
+.label {
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 10px;
+  margin-bottom: 8px;
+  color: var(--ink-2);
+}
+.label .n {
+  color: var(--accent);
+  margin-right: 6px;
+}
+.label.sub {
+  margin-top: 48px;
+}
+.intro {
+  color: var(--ink-2);
+  margin: 16px 0 8px;
+}
+
+.list > .row {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px dashed var(--rule);
+}
+.list > .row:last-child {
+  border-bottom: 0;
+}
+.list > .row {
+  transition: background-color 200ms;
+}
+.list > .row.is-active {
+  background: linear-gradient(90deg, transparent, rgb(255 138 184 / 0.06) 30%, transparent);
+}
+.list > .row.is-active > .meta {
+  color: var(--accent);
+}
+.row > .meta {
+  padding-top: 5px;
+}
+.title {
+  font-size: 18px;
+  line-height: 1.4;
+  text-wrap: pretty;
+}
+.role {
+  font-family: var(--font-mono), monospace;
+  font-size: 13px;
+  color: var(--accent);
+  margin-top: 2px;
+}
+.note {
+  color: var(--ink-2);
+  font-size: 16px;
+  margin-top: 4px;
+  text-wrap: pretty;
+}
+.points {
+  margin-top: 8px;
+  font-size: 15px;
+  color: var(--ink-2);
+}
+.points li {
+  padding-left: 16px;
+  position: relative;
+}
+.points li::before {
+  content: "+";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-family: var(--font-mono), monospace;
+}
+.tag {
+  font-family: var(--font-mono), monospace;
+  font-style: normal;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  border: 1px solid currentColor;
+  border-radius: 3px;
+  padding: 1px 5px;
+  margin-left: 8px;
+  white-space: nowrap;
+  opacity: 0.85;
+}
+
+.elsewhere {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin-top: 12px;
+  font-family: var(--font-mono), monospace;
+  font-size: 14px;
+}
+
+/* Footer */
+.foot {
+  margin-top: 96px;
+  padding-top: 16px;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+.scale {
+  width: 120px;
+  height: 10px;
+}
+.scale path {
+  stroke: var(--ink-3);
+  fill: none;
+}
+.scale rect {
+  fill: var(--ink-3);
+}
+
+@media (max-width: 560px) {
+  body {
+    font-size: 17px;
+  }
+  .page {
+    padding-top: 40px;
+  }
+  .list > .row {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+  .row > .meta {
+    padding-top: 0;
   }
 }
 
-/* Custom utilities */
-.text-gradient {
-  background: var(--gradient-accent);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .world .route-mask {
+    stroke-dashoffset: 0;
+  }
+  .world .place {
+    opacity: 1;
+  }
 }
 
-.bg-gradient-hero {
-  background: var(--gradient-hero);
+/* ---------- Visitor map ---------- */
+.map-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+.map-tabs button {
+  font-family: var(--font-mono), monospace;
+  font-size: 12px;
+  color: var(--ink-3);
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: color 150ms, border-color 150ms;
+}
+.map-tabs button:hover {
+  color: var(--ink);
+}
+.map-tabs button[aria-selected="true"] {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.map-tabs .count {
+  opacity: 0.7;
+  margin-left: 2px;
+}
+.mode-readers .world {
+  cursor: copy;
+}
+.world .sphere {
+  fill: none;
+  stroke: var(--contour-index);
+  stroke-width: 0.8;
+}
+.world .reader {
+  fill: var(--water);
+  opacity: 0.8;
+  animation: pin-in 400ms ease-out both;
+}
+.world .reader.is-mine {
+  fill: var(--accent);
+  opacity: 1;
+  stroke: var(--paper);
+  stroke-width: 1.5;
+}
+.world .draft circle {
+  fill: var(--accent);
+}
+.world .draft .ring {
+  fill: none;
+  stroke: var(--accent);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: ping 1.4s ease-out infinite;
+}
+@keyframes pin-in {
+  from { opacity: 0; r: 8; }
+}
+.link-btn {
+  font: inherit;
+  color: var(--accent);
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.link-btn.muted {
+  color: var(--ink-3);
 }
 
-.bg-gradient-card {
-  background: var(--gradient-card);
+/* ---------- Live Brooklyn conditions + "Currently" ---------- */
+.conditions {
+  animation: fade-in 400ms ease-out;
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+}
+.currently {
+  margin-top: 18px;
+  font-family: var(--font-mono), monospace;
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: var(--ink-3);
+}
+.currently em {
+  font-style: normal;
+  color: var(--ink-2);
+}
+.currently a {
+  color: var(--ink-2);
+}
+.now-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  vertical-align: 1px;
+  animation: beacon 2s ease-out infinite;
+}
+
+/* ---------- Critters ---------- */
+.page {
+  position: relative;
+}
+.cardinal,
+.turtle {
+  background: none;
+  padding: 0;
+  text-decoration: none;
+}
+.cardinal[data-tip]::after,
+.turtle[data-tip]::after {
+  content: attr(data-tip);
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 6px);
+  white-space: nowrap;
+  font-family: var(--font-mono), monospace;
+  font-size: 11px;
+  color: var(--accent);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 3px 7px;
+  opacity: 0;
+  transform: translateY(4px);
+  pointer-events: none;
+  transition: opacity 150ms, transform 150ms;
+}
+.cardinal:hover::after,
+.turtle:hover::after,
+.cardinal:focus-visible::after,
+.turtle:focus-visible::after {
+  opacity: 1;
+  transform: none;
+}
+
+/* The cardinal perches at the right end of the current section's rule. */
+.cardinal {
+  position: absolute;
+  right: 20px;
+  z-index: 4;
+  display: block;
+  line-height: 0;
+  transition: top 600ms cubic-bezier(0.5, 0, 0.3, 1);
+}
+.cardinal svg {
+  display: block;
+  overflow: visible;
+}
+.cardinal.is-hopping svg {
+  animation: hop 600ms cubic-bezier(0.3, 0, 0.3, 1);
+}
+.cardinal-head {
+  transform-box: fill-box;
+  transform-origin: 30% 80%;
+  animation: peck 5s ease-in-out infinite;
+}
+.cardinal:hover .cardinal-head {
+  animation-duration: 0.9s;
+}
+@keyframes hop {
+  0% { transform: translateY(0) rotate(0); }
+  20% { transform: translateY(2px) scaleY(0.9); }
+  55% { transform: translateY(-34px) rotate(-8deg); }
+  85% { transform: translateY(0) rotate(4deg); }
+  100% { transform: translateY(0) rotate(0); }
+}
+@keyframes peck {
+  0%, 82%, 100% { transform: rotate(0); }
+  86% { transform: rotate(14deg); }
+  90% { transform: rotate(-4deg); }
+  94% { transform: rotate(10deg); }
+}
+
+/* The turtle ambles along the footer rule, turning at each end. */
+.foot {
+  position: relative;
+}
+.turtle-track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -16px;
+  height: 16px;
+  pointer-events: none;
+}
+.turtle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  line-height: 0;
+  pointer-events: auto;
+  animation: amble 140s linear infinite;
+}
+.turtle svg {
+  display: block;
+  overflow: visible;
+  animation: face 140s linear infinite;
+}
+.turtle:hover,
+.turtle:hover svg,
+.turtle:hover .turtle-legs {
+  animation-play-state: paused;
+}
+.turtle-shell {
+  fill: var(--contour-index);
+}
+.turtle-scutes {
+  fill: none;
+  stroke: var(--paper);
+  stroke-width: 0.9;
+  opacity: 0.7;
+}
+.turtle-skin,
+.turtle-legs ellipse {
+  fill: #9cc79f;
+}
+.turtle-legs {
+  animation: paddle 0.9s ease-in-out infinite alternate;
+}
+@keyframes paddle {
+  from { transform: translateX(-0.8px); }
+  to { transform: translateX(0.8px); }
+}
+@keyframes amble {
+  0%, 100% { left: 0; }
+  50% { left: calc(100% - 30px); }
+}
+/* Only the drawing turns around, so the tooltip never reads backwards. */
+@keyframes face {
+  0%, 49.9% { transform: scaleX(1); }
+  50%, 99.9% { transform: scaleX(-1); }
 }

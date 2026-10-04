@@ -1,47 +1,39 @@
 import type { Metadata } from "next";
-import { Space_Grotesk, Inter } from "next/font/google";
+import { Young_Serif, Familjen_Grotesk, DM_Mono } from "next/font/google";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
+const display = Young_Serif({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: "400",
 });
 
-const inter = Inter({
-  variable: "--font-body",
+const sans = Familjen_Grotesk({
+  variable: "--font-sans",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
 });
+
+const mono = DM_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  weight: ["400", "500"],
+});
+
+const description =
+  "Geographer working on climate and home electrification. Previously PhD research on river restoration in India, and policy work with UNDP.";
 
 export const metadata: Metadata = {
-  title: "Utkarsh Roy Choudhury | Geographer & Political Ecologist",
-  description: "PhD Candidate at the University of Alabama studying river governance, environmental politics, and human-wildlife relations.",
-  keywords: ["geography", "political ecology", "environmental governance", "researcher", "PhD"],
+  title: "Utkarsh Roy Choudhury",
+  description,
   authors: [{ name: "Utkarsh Roy Choudhury" }],
-  icons: {
-    icon: "/favicon.png",
-    apple: "/favicon.png",
-  },
-  openGraph: {
-    title: "Utkarsh Roy Choudhury",
-    description: "Geographer · Political Ecologist · Researcher",
-    type: "website",
-  },
+  openGraph: { title: "Utkarsh Roy Choudhury", description, type: "website" },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className="dark">
-      <body
-        className={`${spaceGrotesk.variable} ${inter.variable} antialiased bg-bg-primary text-text-primary`}
-      >
-        {children}
-      </body>
+    <html lang="en">
+      <body className={`${display.variable} ${sans.variable} ${mono.variable}`}>{children}</body>
     </html>
   );
 }

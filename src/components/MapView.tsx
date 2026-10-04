@@ -36,8 +36,10 @@ type Props = {
 type Mode = "home" | "readers";
 
 const DRAW_MS = 2600;
-// Where the dolphin surfaces: the Ganga near Patna.
-const DOLPHIN_AT: [number, number] = [85.6, 25.45];
+// Where the dolphin surfaces: the Vikramshila Gangetic Dolphin Sanctuary near Bhagalpur.
+const DOLPHIN_AT: [number, number] = [87.2, 25.1];
+// City labels that step aside when the river is revealed.
+const NEAR_GANGA = ["Lucknow", "Pune"];
 // Night, plus two soft bands of twilight around it.
 const NIGHT_RADII = [90, 93, 96];
 const SECRET = "ganga";
@@ -298,7 +300,13 @@ export default function MapView(p: Props) {
                   }}
                 >
                   <title>A Ganga river dolphin</title>
-                  <circle r={10} className="hit" />
+                  <circle r={16} className="hit" />
+                  <circle r={9} className="beacon" />
+                  <ellipse rx={7} ry={2.2} cy={5} className="ripple" />
+                  <ellipse rx={7} ry={2.2} cy={5} className="ripple late" />
+                  <circle cx={-3} cy={3} r={0.9} className="splash" />
+                  <circle cx={0} cy={2} r={1.1} className="splash" />
+                  <circle cx={3} cy={3} r={0.9} className="splash" />
                   <g className="dolphin-body">
                     <path d="M-7 1.5C-4-3.5 3-4.5 6.5-1l4.5-.6-4.2 1.9C4 3.4-3 4-7 1.5z" />
                     <path d="M-1-2.8l1.4-2.6 1 2.4z" />
@@ -310,7 +318,7 @@ export default function MapView(p: Props) {
               {p.markers.map((m) => (
                 <g
                   key={m.name}
-                  className={`place${focus === m.name ? " is-active" : ""}`}
+                  className={`place${focus === m.name ? " is-active" : ""}${NEAR_GANGA.includes(m.name) ? " near-ganga" : ""}`}
                   transform={`translate(${m.x} ${m.y})`}
                   style={{ "--delay": `${Math.round(m.at * DRAW_MS)}ms` } as React.CSSProperties}
                   tabIndex={0}

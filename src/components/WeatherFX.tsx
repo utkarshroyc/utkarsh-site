@@ -109,7 +109,12 @@ export default function WeatherFX() {
   return (
     <>
       <canvas ref={canvas} className="weather-fx" aria-hidden="true" />
-      {sky === "fog" && <div className="weather-fog" aria-hidden="true" />}
+      {sky === "fog" && (
+        <>
+          <div className="weather-fog" aria-hidden="true" />
+          <div className="weather-fog front" aria-hidden="true" />
+        </>
+      )}
     </>
   );
 }

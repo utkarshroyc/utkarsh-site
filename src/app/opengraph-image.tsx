@@ -79,7 +79,7 @@ export default async function Image() {
           position: "relative",
         }}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text */}
+        {/* eslint-disable-next-line jsx-a11y/alt-text */}
         <img src={map} width={1200} height={330} style={{ position: "absolute", left: 0, bottom: 0, opacity: 0.9 }} />
         <div style={{ display: "flex", flexDirection: "column", padding: "64px 80px 0" }}>
           <div

@@ -1,10 +1,20 @@
+"use client";
+
+import { findCritter } from "@/lib/critters";
+
 // A turtle that ambles back and forth along the footer line.
 // A nod to "How will the turtles know?". Click it to jump to the research.
 
 export default function Turtle() {
   return (
     <div className="turtle-track">
-      <a href="#research" className="turtle" aria-label="A turtle. Jump to research" data-tip="how will the turtles know?">
+      <a
+        href="#research"
+        className="turtle"
+        aria-label="A turtle. Jump to research"
+        data-tip="how will the turtles know?"
+        onClick={() => findCritter("turtle")}
+      >
         <svg viewBox="0 0 30 16" width="30" height="16" aria-hidden="true">
           <g className="turtle-legs">
             <ellipse cx="9" cy="13.4" rx="2" ry="1.6" />

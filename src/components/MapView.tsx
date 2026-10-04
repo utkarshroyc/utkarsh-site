@@ -1,9 +1,11 @@
 "use client";
 
-import { geoNaturalEarth1 } from "d3-geo";
+import { geoCircle, geoNaturalEarth1, geoPath } from "d3-geo";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useMapFocus } from "./MapContext";
 import { formatCoords } from "@/lib/coords";
+import { findCritter, REVEAL_GANGA } from "@/lib/critters";
+import { antisolarPoint } from "@/lib/sun";
 
 type Marker = {
   name: string;
@@ -34,6 +36,10 @@ type Props = {
 type Mode = "home" | "readers";
 
 const DRAW_MS = 2600;
+// Where the dolphin surfaces: the Ganga near Patna.
+const DOLPHIN_AT: [number, number] = [85.6, 25.45];
+// Night, plus two soft bands of twilight around it.
+const NIGHT_RADII = [90, 93, 96];
 const SECRET = "ganga";
 const PINNED_KEY = "dropped-pin";
 
@@ -89,6 +95,25 @@ export default function MapView(p: Props) {
   );
   const proj = mode === "home" ? homeProj : globeProj;
 
+  // Night shadow, computed on the client (it depends on the current time) and
+  // refreshed every minute.
+  const [night, setNight] = useState<{ home: string[]; globe: string[] } | null>(null);
+  useEffect(() => {
+    const homePath = geoPath(homeProj);
+    const globePath = geoPath(globeProj);
+    const update = () => {
+      const center = antisolarPoint();
+      const circles = NIGHT_RADII.map((r) => geoCircle().center(center).radius(r)());
+      setNight({
+        home: circles.map((c) => homePath(c) ?? ""),
+        globe: circles.map((c) => globePath(c) ?? ""),
+      });
+    };
+    update();
+    const id = setInterval(update, 60_000);
+    return () => clearInterval(id);
+  }, [homeProj, globeProj]);
+
   useEffect(() => {
     fetch("/api/pins")
       .then((r) => r.json())
@@ -130,8 +155,17 @@ export default function MapView(p: Props) {
         ref.current?.scrollIntoView({ behavior: "smooth", block: "center" });
       }
     };
+    const reveal = () => {
+      setMode("home");
+      setRiver(true);
+      ref.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    };
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    window.addEventListener(REVEAL_GANGA, reveal);
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener(REVEAL_GANGA, reveal);
+    };
   }, []);
 
   const toLonLat = (e: React.PointerEvent<SVGSVGElement> | React.MouseEvent<SVGSVGElement>) => {
@@ -182,6 +216,7 @@ export default function MapView(p: Props) {
     return xy ? { x: +xy[0].toFixed(1), y: +xy[1].toFixed(1) } : null;
   };
 
+  const dolphinXY = homeProj(DOLPHIN_AT);
   const card = mode === "home" ? p.markers.find((m) => m.name === focus) : undefined;
   const draftXY = draft ? project(draft[0], draft[1]) : null;
   const mineXY = mine ? project(mine.lon, mine.lat) : null;
@@ -247,10 +282,30 @@ export default function MapView(p: Props) {
             <g clipPath="url(#frame)">
               <path d={p.graticule} className="graticule" />
               <path d={p.land} className="land" />
+              {night?.home.map((d, i) => <path key={i} d={d} className="night" />)}
               <path d={p.ganga} className="ganga" pathLength={1} />
               <text x={p.gangaLabel[0] + 6} y={p.gangaLabel[1] + 14} className="ganga-label">
                 Ganga
               </text>
+              {dolphinXY && (
+                <g
+                  className="dolphin"
+                  transform={`translate(${dolphinXY[0].toFixed(1)} ${dolphinXY[1].toFixed(1)})`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    findCritter("dolphin");
+                    setStatus("A Ganga river dolphin! They're nearly blind and navigate by echolocation.");
+                  }}
+                >
+                  <title>A Ganga river dolphin</title>
+                  <circle r={10} className="hit" />
+                  <g className="dolphin-body">
+                    <path d="M-7 1.5C-4-3.5 3-4.5 6.5-1l4.5-.6-4.2 1.9C4 3.4-3 4-7 1.5z" />
+                    <path d="M-1-2.8l1.4-2.6 1 2.4z" />
+                    <path d="M-7 1.5l-3-2.4.6 3.4z" />
+                  </g>
+                </g>
+              )}
               <path d={p.route} className="route" mask="url(#route-reveal)" />
               {p.markers.map((m) => (
                 <g
@@ -276,6 +331,7 @@ export default function MapView(p: Props) {
               <path d={p.world.sphere} className="sphere" />
               <path d={p.world.graticule} className="graticule" />
               <path d={p.world.land} className="land" />
+              {night?.globe.map((d, i) => <path key={i} d={d} className="night" />)}
               {pins.map((pin, i) => {
                 const xy = project(pin.lon, pin.lat);
                 return xy && <circle key={`${pin.t}-${i}`} cx={xy.x} cy={xy.y} r={2.4} className="reader" />;

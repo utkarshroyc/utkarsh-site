@@ -1,9 +1,11 @@
 import Cardinal from "@/components/Cardinal";
 import Coords from "@/components/Coords";
+import CritterHunt from "@/components/CritterHunt";
 import LocalConditions from "@/components/LocalConditions";
 import { MapProvider, PlaceRow } from "@/components/MapContext";
 import Topo from "@/components/Topo";
 import Turtle from "@/components/Turtle";
+import WeatherFX from "@/components/WeatherFX";
 import WorldMap from "@/components/WorldMap";
 import {
   EMAIL,
@@ -118,6 +120,7 @@ export default async function Home() {
   return (
     <MapProvider>
       <main className="page">
+        <WeatherFX />
         <Coords />
         <Cardinal />
         <header className="masthead">
@@ -254,6 +257,8 @@ export default async function Home() {
           </ul>
         </Section>
 
+        <CritterHunt />
+
         <footer className="foot meta">
           <Turtle />
           <svg viewBox="0 0 120 10" className="scale" aria-hidden="true">
@@ -261,7 +266,16 @@ export default async function Home() {
             <rect x="1" y="4" width="29" height="2" />
             <rect x="60" y="4" width="30" height="2" />
           </svg>
-          <span>© {new Date().getFullYear()} Utkarsh Roy Choudhury</span>
+          <span className="foot-text">
+            <span>© {new Date().getFullYear()} Utkarsh Roy Choudhury</span>
+            <span className="credit">
+              Cardinal song by{" "}
+              <a href="https://xeno-canto.org/75501" target="_blank" rel="noopener noreferrer">
+                Jonathon Jongsma
+              </a>
+              , CC BY-SA 3.0
+            </span>
+          </span>
         </footer>
       </main>
     </MapProvider>

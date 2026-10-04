@@ -24,6 +24,7 @@ const description =
   "Geographer working on climate and home electrification. Previously PhD research on river restoration in India, and policy work with UNDP.";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://utkarshroy.xyz"),
   title: "Utkarsh Roy Choudhury",
   description,
   authors: [{ name: "Utkarsh Roy Choudhury" }],

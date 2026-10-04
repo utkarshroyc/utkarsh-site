@@ -22,7 +22,6 @@ export const logos = {
     { name: "Work on Climate", src: "/logos/work-on-climate.svg", h: 16, tip: "Work on Climate" },
     { name: "Upcyclio", src: "/logos/upcyclio.png", h: 24, tip: "Co-founder · 2017–19" },
     { name: "UNDP", src: "/logos/undp.svg", h: 40, tip: "Policy & Program · 2017–18" },
-    { name: "IKEA Foundation", src: "/logos/ikea-foundation.png", h: 30, tip: "Project Disha · 2017" },
     { name: "Institute of Development Studies", src: "/logos/ids.svg", h: 30, tip: "Knowledge Mobilization · 2020" },
     { name: "Sussex Students' Union", src: "/logos/sussex-su.svg", h: 26, tip: "Strategic Research · 2019–20" },
     { name: "AIESEC", src: "/logos/aiesec.svg", h: 18, tip: "Senior Manager · 2015–16" },
@@ -40,7 +39,7 @@ export type Place = { name: string; at: [number, number]; years: string; note: s
 
 export const places: Place[] = [
   { name: "Lucknow", at: [80.95, 26.85], years: "Home · Upcyclio 2017–19", note: "Where it started", label: "right" },
-  { name: "Pune", at: [73.86, 18.52], years: "2015–19", note: "BBA, AIESEC, UNDP × IKEA Foundation", label: "left" },
+  { name: "Pune", at: [73.86, 18.52], years: "2015–19", note: "BBA, AIESEC, UNDP", label: "left" },
   { name: "Brighton", at: [-0.14, 50.82], years: "2019–20", note: "MA, IDS, Students' Union", label: "above" },
   { name: "Tuscaloosa", at: [-87.57, 33.21], years: "2021–26", note: "PhD, teaching, GAGES", label: "below" },
   { name: "Brooklyn", at: [-73.94, 40.68], years: "2026—", note: "Coral", label: "right" },
@@ -123,7 +122,7 @@ export const work: Entry[] = [
   },
   {
     years: "2017",
-    org: "UNDP × IKEA Foundation",
+    org: "UNDP",
     role: "Program & Strategy Associate",
     place: "Pune",
     summary:

@@ -137,8 +137,8 @@ export default async function Home() {
             painful.
           </p>
           <p className="lede">
-            Before that: policy and program work with UNDP and the IKEA
-            Foundation, research communication at IDS, and a running habit of{" "}
+            Before that: policy and program work with UNDP, research
+            communication at IDS, and a running habit of{" "}
             <a href="#writing">writing things down</a>.
           </p>
           <Currently latest={posts[0]} reading={reading} />

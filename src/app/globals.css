@@ -227,7 +227,7 @@ a:hover .arrow {
 }
 
 /* Logo strip: invert + screen blend renders any logo as pale ink on the green,
-   keeping knocked-out letters (UNDP, IKEA) legible. */
+   keeping knocked-out letters (UNDP) legible. */
 .logos {
   margin-top: 48px;
 }

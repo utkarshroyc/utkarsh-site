@@ -8,16 +8,16 @@ import Turtle from "@/components/Turtle";
 import WeatherFX from "@/components/WeatherFX";
 import WorldMap from "@/components/WorldMap";
 import {
-  EMAIL,
+  about,
+  chapters,
+  CORAL_URL,
   currently,
-  education,
+  EMAIL,
+  LINKEDIN,
   links,
   logos,
-  now,
   otherWriting,
   papers,
-  work,
-  type Entry,
 } from "@/lib/content";
 import { getReading } from "@/lib/fable";
 import { getPosts, SUBSTACK_URL } from "@/lib/substack";
@@ -60,28 +60,6 @@ function Section({
       </h2>
       {children}
     </section>
-  );
-}
-
-function Row({ e }: { e: Entry }) {
-  return (
-    <PlaceRow place={e.place} years={e.years}>
-      <span className="meta">{e.years}</span>
-      <div>
-        <p className="title">
-          {e.href ? <Ext href={e.href}>{e.org}</Ext> : e.org}
-        </p>
-        <p className="role">{e.role}</p>
-        {e.summary && <p className="note">{e.summary}</p>}
-        {e.points && (
-          <ul className="points">
-            {e.points.map((p) => (
-              <li key={p}>{p}</li>
-            ))}
-          </ul>
-        )}
-      </div>
-    </PlaceRow>
   );
 }
 
@@ -136,19 +114,19 @@ export default async function Home() {
             Geographer turned climate operator. I spent five years studying how
             big environmental programs play out on the ground, along
             India&apos;s Ganga. Now I work on the other end of the problem at{" "}
-            <Ext href={now.href!}>Coral</Ext>, making home electrification less
+            <Ext href={CORAL_URL}>Coral</Ext>, making home electrification less
             painful.
           </p>
           <p className="lede">
-            Before that: policy and program work with UNDP, research
-            communication at IDS, and a running habit of{" "}
+            Before that: a startup in Lucknow, policy work with UNDP, a
+            master&apos;s in Brighton, and a running habit of{" "}
             <a href="#writing">writing things down</a>.
           </p>
           <Currently latest={posts[0]} reading={reading} />
           <nav className="jump" aria-label="Sections">
-            <a href="#work">Work</a>
+            <a href="#about">About me</a>
+            <a href="#chapters">Chapters</a>
             <a href="#writing">Writing</a>
-            <a href="#research">Research</a>
             <a href="#contact">Contact</a>
           </nav>
         </header>
@@ -174,15 +152,43 @@ export default async function Home() {
 
         <WorldMap />
 
-        <Section id="work" n="01" title="Work">
-          <ul className="list">
-            {work.map((e) => (
-              <Row key={e.org + e.role} e={e} />
+        <Section id="about" n="01" title="About me">
+          <ul className="notes">
+            {about.map((n) => (
+              <li key={n.label}>
+                <span className="note-label">{n.label}</span>
+                <div>
+                  <p>{n.text}</p>
+                  {n.essay && (
+                    <p className="from">
+                      from <Ext href={n.essay.href}>{n.essay.title}</Ext>
+                    </p>
+                  )}
+                </div>
+              </li>
             ))}
           </ul>
         </Section>
 
-        <Section id="writing" n="02" title="Writing">
+        <Section id="chapters" n="02" title="Chapters">
+          <ul className="list chapters">
+            {chapters.map((c) => (
+              <PlaceRow key={c.place} place={c.place} years={c.years}>
+                <span className="meta">{c.years}</span>
+                <p className="title">
+                  <span className="chapter-place">{c.place}</span>
+                  {c.href ? <Ext href={c.href}>{c.line}</Ext> : c.line}
+                </p>
+              </PlaceRow>
+            ))}
+          </ul>
+          <p className="more">
+            The long version, with titles and dates, lives on{" "}
+            <Ext href={LINKEDIN}>LinkedIn</Ext>.
+          </p>
+        </Section>
+
+        <Section id="writing" n="03" title="Writing">
           <p className="intro">
             <Ext href={SUBSTACK_URL}>slightly* unfinished</Ext> is my newsletter
             on culture, climate and the spaces in between.
@@ -211,33 +217,20 @@ export default async function Home() {
               </li>
             ))}
           </ul>
-        </Section>
 
-        <Section id="research" n="03" title="Research">
-          <p className="intro">
-            Political ecology, river restoration and conservation governance.
-          </p>
-          <ul className="list">
+          <h3 id="papers" className="label sub">Papers</h3>
+          <ul className="list papers">
             {papers.map((p) => (
               <li key={p.title} className="row">
                 <span className="meta">{p.year}</span>
-                <div>
-                  <p className="title">
-                    {p.href ? <Ext href={p.href}>{p.title}</Ext> : p.title}
-                  </p>
-                  <p className="note">
-                    <em>{p.venue}</em>
+                <p className="title">
+                  {p.href ? <Ext href={p.href}>{p.title}</Ext> : p.title}{" "}
+                  <span className="venue">
+                    {p.venue}
                     {p.status && <span className="tag">{p.status}</span>}
-                  </p>
-                </div>
+                  </span>
+                </p>
               </li>
-            ))}
-          </ul>
-
-          <h3 className="label sub">Education</h3>
-          <ul className="list">
-            {education.map((e) => (
-              <Row key={e.org + e.role} e={e} />
             ))}
           </ul>
         </Section>

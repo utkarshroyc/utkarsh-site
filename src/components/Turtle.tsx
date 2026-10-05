@@ -3,15 +3,15 @@
 import { findCritter } from "@/lib/critters";
 
 // A turtle that ambles back and forth along the footer line.
-// A nod to "How will the turtles know?". Click it to jump to the research.
+// A nod to "How will the turtles know?". Click it to jump to the papers.
 
 export default function Turtle() {
   return (
     <div className="turtle-track">
       <a
-        href="#research"
+        href="#papers"
         className="turtle"
-        aria-label="A turtle. Jump to research"
+        aria-label="A turtle. Jump to my papers"
         data-tip="how will the turtles know?"
         onClick={() => findCritter("turtle")}
       >

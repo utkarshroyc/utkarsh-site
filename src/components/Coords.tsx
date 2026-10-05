@@ -7,7 +7,7 @@ import { useMapFocus } from "./MapContext";
 import { formatCoords } from "@/lib/coords";
 
 // Scrolling down travels back in time along the route: Brooklyn → … → Lucknow,
-// mirroring the reverse-chronological work list.
+// mirroring the reverse-chronological chapters list.
 const stops = [...places].reverse();
 const legs = stops.slice(1).map((p, i) => geoDistance(stops[i].at, p.at));
 const total = legs.reduce((a, b) => a + b, 0);
@@ -32,7 +32,7 @@ function locate(t: number) {
 export default function Coords() {
   const [state, setState] = useState(() => ({ ...locate(0), visible: false }));
   const { active, years } = useMapFocus();
-  // Hovering a work row jumps the readout to that city, since the map is usually off-screen.
+  // Hovering a chapter jumps the readout to that city, since the map is usually off-screen.
   const pinned = places.find((p) => p.name === active);
 
   useEffect(() => {

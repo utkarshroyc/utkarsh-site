@@ -45,97 +45,56 @@ export const places: Place[] = [
   { name: "Brooklyn", at: [-73.94, 40.68], years: "2026—", note: "Coral", label: "right" },
 ];
 
-export type Entry = {
-  years: string;
-  org: string;
-  role: string;
-  place?: string; // links the row to a map marker
-  href?: string;
-  summary?: string;
-  points?: string[];
-};
+export const CORAL_URL = "https://startcoral.com";
+export const LINKEDIN = links[1].href;
 
-export const now: Entry = {
-  years: "2026—",
-  org: "Coral",
-  role: "Operations & Research",
-  place: "Brooklyn",
-  href: "https://startcoral.com",
-  summary:
-    "Helping households switch to heat pumps by untangling the rebate and incentive programs that make it affordable.",
-};
+// About me. Drafted from my essays on slightly* unfinished.
+// TODO(utkarsh): edit freely; these are a first pass in my voice.
+export type Note = { label: string; text: string; essay?: { title: string; href: string } };
 
-export const work: Entry[] = [
-  now,
+const ESSAYS = "https://slightlyunfinished.substack.com/p";
+
+export const about: Note[] = [
   {
-    years: "2021—26",
-    org: "University of Alabama",
-    role: "PhD Researcher, Geography",
-    place: "Tuscaloosa",
-    summary:
-      "The Unfinished River: a dissertation on the political ecology of India's Namami Gange program, and how a multi-billion-dollar river restoration reshapes relations between people, the state and aquatic wildlife.",
-    points: [
-      "40+ interviews with officials, NGO scientists and practitioners across India",
-      "Policy and financial analysis of a $3B+ restoration program",
-      "Managed a $10k+ research budget and multi-site fieldwork",
-    ],
+    label: "Home",
+    text: "Home, for me, has always been a person, never a city. I've lived in five of them, and the places I miss are really the people in them: the friend who left banana bread on my desk, the brother who slept on the floor of an empty apartment with me our first week in Alabama.",
+    essay: { title: "Love Letters from the Finish Line", href: `${ESSAYS}/love-letters-from-the-finish-line` },
   },
   {
-    years: "2021—26",
-    org: "University of Alabama",
-    role: "Program Coordinator & Head Teaching Assistant",
-    place: "Tuscaloosa",
-    summary:
-      "Ran instructional operations for an intro science program serving 800+ students a semester; supervised and trained 10–15 graduate assistants. Also co-founded GAGES, the department's graduate student association.",
+    label: "Rivers",
+    text: "I spent five years thinking about one river, the Ganga, and I still go looking for water wherever I land. My favourite place in Tuscaloosa was a plain walkway along the Black Warrior River, where herons stood in the shallows and the evening light went copper.",
   },
   {
-    years: "2020",
-    org: "Institute of Development Studies",
-    role: "Knowledge Mobilization Associate",
-    place: "Brighton",
-    summary:
-      "Led digital communications for the launch of Poverty Unpacked, a podcast translating poverty research for public audiences.",
+    label: "Birds",
+    text: "I moved to America knowing none of its birds. Now I can't stop noticing them: the cardinal that never leaves its patch, the flicker drumming on a dead branch. Click the red one perched nearby; it sings.",
+    essay: { title: "tuscaloosa, or something like it", href: `${ESSAYS}/tuscaloosa-or-something-like-it` },
   },
   {
-    years: "2019—20",
-    org: "University of Sussex Students' Union",
-    role: "Strategic Research Coordinator",
-    place: "Brighton",
-    summary:
-      "Ran the Officer Review, a mixed-methods governance review for a union of 18,000+ students: 61 interviews, 10 focus groups and 2 surveys, followed by a restructuring.",
+    label: "Climbing",
+    text: "I grew up with the Himalayas, so I was a mountain snob until sixty feet of Kentucky sandstone humbled me. Climbing was never about conquering anything. On the wall, the world goes quiet and all that exists is the next hold.",
+    essay: { title: "vertical stillness", href: `${ESSAYS}/vertical-stillness` },
   },
   {
-    years: "2017—19",
-    org: "Upcyclio",
-    role: "Co-founder",
-    place: "Lucknow",
-    href: "https://www.linkedin.com/company/upcyclio/",
-    summary:
-      "Co-founded a greentech product company in Lucknow, designing upcycled lifestyle products for a more sustainable, eco-conscious way of living.",
+    label: "Learning",
+    text: "Drop me into something I couldn't care less about and I'll figure it out. That's my trademark statement at this point. Ask me how a political ecologist ended up teaching atmospheric science to a hundred undergrads.",
+    essay: { title: "good enough (?)", href: `${ESSAYS}/good-enough` },
   },
   {
-    years: "2018",
-    org: "UNDP Maharashtra",
-    role: "Policy Research Associate",
-    summary:
-      "Policy briefs and concept notes on rural entrepreneurship and livelihoods, informing state planning and CSR partnerships.",
+    label: "Strong opinions",
+    text: "Good coffee matters. Presentations should move with the argument. And resilience can be a trap: we've gotten very good at cleaning up our messes and much worse at not making them.",
+    essay: { title: "beautiful, sinking things", href: `${ESSAYS}/beautiful-sinking-things` },
   },
-  {
-    years: "2017",
-    org: "UNDP",
-    role: "Program & Strategy Associate",
-    place: "Pune",
-    summary:
-      "Concept notes, M&E frameworks and state-level coordination for Project Disha, an initiative to skill 1 million women across Maharashtra, Telangana and Odisha.",
-  },
-  {
-    years: "2015—16",
-    org: "AIESEC in India",
-    role: "Senior Manager, Sales & International Relations",
-    place: "Pune",
-    summary:
-      "Led a team of six running international volunteering exchanges for students, and coordinated with AIESEC entities across Asia-Pacific.",
-  },
+];
+
+// One line per chapter, matching the cities on the map. The full CV lives on LinkedIn.
+export type Chapter = { years: string; place: string; line: string; href?: string };
+
+export const chapters: Chapter[] = [
+  { years: "2026—", place: "Brooklyn", line: "Operations & research at Coral", href: CORAL_URL },
+  { years: "2021—26", place: "Tuscaloosa", line: "PhD in Geography on the politics of restoring the Ganga, while teaching 800 undergrads a semester" },
+  { years: "2019—20", place: "Brighton", line: "MA at the Institute of Development Studies, research at the Students' Union" },
+  { years: "2017—19", place: "Lucknow", line: "Co-founded Upcyclio, an upcycling startup" },
+  { years: "2015—19", place: "Pune", line: "BBA at Symbiosis, AIESEC, and my first policy work with UNDP" },
 ];
 
 export type Paper = {
@@ -151,33 +110,27 @@ export const papers: Paper[] = [
     year: "2026",
     title:
       "Maintained disrepair: accumulation by rejuvenation, financialization, and the politics of restoration in India's Namami Gange program",
-    venue: "Environment and Planning E: Nature and Space",
+    venue: "Environment and Planning E",
     href: "https://doi.org/10.1177/25148486261455652",
   },
   {
     year: "2026",
     title:
       "The politics of invisibilization: environmental performativity and the erasure of nonhuman life in India's Namami Gange Program",
-    venue: "Geoforum 172",
+    venue: "Geoforum",
     href: "https://doi.org/10.1016/j.geoforum.2026.104632",
   },
   {
     year: "2026",
     title: "Four decades of Ganga rejuvenation: evidence, outcomes, and road ahead",
-    venue: "WIREs Water 13(5)",
+    venue: "WIREs Water",
     href: "https://doi.org/10.1002/wat2.70087",
-  },
-  {
-    year: "2026",
-    title:
-      "The Unfinished River: a political ecology of restoration and nonhuman erasure on the Ganga River",
-    venue: "PhD dissertation, University of Alabama",
   },
   {
     year: "2023",
     title:
       "Seeing animals like a state? Divergent forester subjectivities and the managing of human-wildlife conflicts in South India",
-    venue: "Geoforum 147",
+    venue: "Geoforum",
     href: "https://doi.org/10.1016/j.geoforum.2023.103892",
   },
   {
@@ -187,23 +140,12 @@ export const papers: Paper[] = [
     venue: "Transactions of the IBG",
     status: "In preparation",
   },
-  {
-    year: "2018",
-    title: "Moving from wages to livelihood in rural India: creation of micro-entrepreneurs",
-    venue: "UNDP Maharashtra",
-  },
 ];
 
 export const otherWriting = [
   {
     title: "Toasted",
-    note: "A publication on climate anxiety and ecological grief. Levitetz Innovation Seed Grant.",
+    note: "A newsletter on climate anxiety I started with a friend. Levitetz Innovation Seed Grant.",
     href: "https://toasted.beehiiv.com",
   },
-];
-
-export const education: Entry[] = [
-  { years: "2026", org: "University of Alabama", role: "PhD, Geography", place: "Tuscaloosa" },
-  { years: "2020", org: "IDS, University of Sussex", role: "MA, Development Studies (Distinction)", place: "Brighton" },
-  { years: "2016—19", org: "Symbiosis International University", role: "BBA, Environment Management", place: "Pune" },
 ];

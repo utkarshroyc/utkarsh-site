@@ -91,7 +91,7 @@ export type Chapter = { years: string; place: string; line: string; href?: strin
 
 export const chapters: Chapter[] = [
   { years: "2026—", place: "Brooklyn", line: "Operations & research at Coral", href: CORAL_URL },
-  { years: "2021—26", place: "Tuscaloosa", line: "PhD in Geography on the politics of restoring the Ganga, while teaching 800 undergrads a semester" },
+  { years: "2021—26", place: "Tuscaloosa", line: "PhD in Geography on the politics of restoring the Ganga, while teaching about 100 undergrads a semester" },
   { years: "2019—20", place: "Brighton", line: "MA at the Institute of Development Studies, research at the Students' Union" },
   { years: "2017—19", place: "Lucknow", line: "Co-founded Upcyclio, an upcycling startup" },
   { years: "2015—19", place: "Pune", line: "BBA at Symbiosis, AIESEC, and my first policy work with UNDP" },

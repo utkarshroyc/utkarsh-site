@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
-import { Young_Serif, Familjen_Grotesk, DM_Mono } from "next/font/google";
+import { Familjen_Grotesk, DM_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const display = Young_Serif({
+// Le Murmure by Jérémy Landes / Velvetyne, SIL Open Font License 1.1 (see /fonts/LeMurmure-OFL.txt).
+const display = localFont({
   variable: "--font-display",
-  subsets: ["latin"],
+  src: "../fonts/LeMurmure-Regular.woff2",
   weight: "400",
+  display: "swap",
 });
 
 const sans = Familjen_Grotesk({

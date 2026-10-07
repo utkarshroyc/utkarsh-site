@@ -194,9 +194,9 @@ a:hover .arrow {
 }
 .masthead h1 {
   font-family: var(--font-display), Georgia, serif;
-  font-size: clamp(36px, 7vw, 54px);
-  line-height: 1.05;
-  letter-spacing: -0.015em;
+  font-size: clamp(48px, 10vw, 78px);
+  line-height: 1;
+  letter-spacing: 0.005em;
   font-weight: 400;
   margin-bottom: 24px;
 }
@@ -400,7 +400,8 @@ a:hover .arrow {
   font-family: var(--font-display), serif;
   font-weight: 400;
   color: var(--ink);
-  font-size: 15px;
+  font-size: 20px;
+  line-height: 1.1;
 }
 .map-card .meta {
   color: var(--accent);
@@ -1151,6 +1152,8 @@ button.hunt-slot {
 }
 .chapter-place {
   font-family: var(--font-display), serif;
+  font-size: 24px;
+  line-height: 1;
   color: var(--ink);
   margin-right: 10px;
 }

@@ -1,3 +1,5 @@
+import { readFile } from "node:fs/promises";
+import path from "node:path";
 import { geoNaturalEarth1, geoPath } from "d3-geo";
 import { ImageResponse } from "next/og";
 import { feature } from "topojson-client";
@@ -59,10 +61,10 @@ export default async function Image() {
   const name = "Utkarsh Roy Choudhury";
   const line = "Geographer turned climate operator.";
   const meta = "40.68° N, 73.94° W · BROOKLYN";
-  const tags = "WORK · WRITING · RESEARCH";
+  const tags = "CHAPTERS · WRITING · PAPERS";
 
-  const [serif, mono] = await Promise.all([
-    font("Young+Serif", name + line),
+  const [display, mono] = await Promise.all([
+    readFile(path.join(process.cwd(), "src/fonts/le-murmure.otf")),
     font("DM+Mono", meta + tags),
   ]);
   const map = `data:image/svg+xml;base64,${Buffer.from(mapSvg(1200, 330)).toString("base64")}`;
@@ -97,17 +99,17 @@ export default async function Image() {
             <span>{meta}</span>
             <span style={{ color: C.accent }}>{tags}</span>
           </div>
-          <div style={{ fontFamily: "Young Serif", fontSize: 80, color: C.ink, marginTop: 44, letterSpacing: -1.5 }}>
+          <div style={{ fontFamily: "Le Murmure", fontSize: 112, color: C.ink, marginTop: 36, lineHeight: 1 }}>
             {name}
           </div>
-          <div style={{ fontFamily: "Young Serif", fontSize: 38, color: C.ink2, marginTop: 10 }}>{line}</div>
+          <div style={{ fontFamily: "Le Murmure", fontSize: 46, color: C.ink2, marginTop: 12 }}>{line}</div>
         </div>
       </div>
     ),
     {
       ...size,
       fonts: [
-        { name: "Young Serif", data: serif, style: "normal", weight: 400 },
+        { name: "Le Murmure", data: display, style: "normal", weight: 400 },
         { name: "DM Mono", data: mono, style: "normal", weight: 400 },
       ],
     }

@@ -245,7 +245,12 @@ export default async function Home() {
               <a href="https://xeno-canto.org/75501" target="_blank" rel="noopener noreferrer">
                 Jonathon Jongsma
               </a>
-              , CC BY-SA 3.0
+              , CC BY-SA 3.0 · Type:{" "}
+              <a href="https://velvetyne.fr/fonts/le-murmure/" target="_blank" rel="noopener noreferrer">
+                Le Murmure
+              </a>{" "}
+              by Jérémy Landes,{" "}
+              <a href="/fonts/LeMurmure-OFL.txt">OFL</a>
             </span>
           </span>
         </footer>

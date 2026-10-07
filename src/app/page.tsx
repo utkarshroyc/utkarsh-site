@@ -111,8 +111,7 @@ export default async function Home() {
           <h1>Utkarsh Roy Choudhury</h1>
           <p className="lede">
             Geographer turned climate operator. I spent five years studying how
-            big environmental programs play out on the ground, along a river
-            system in India. Now I work on the other end of the problem at{" "}
+            big environmental programs play out on the ground. Now I work on the other end of the problem at{" "}
             <Ext href={CORAL_URL}>Coral</Ext>, making home electrification less
             painful.
           </p>

@@ -58,7 +58,7 @@ export default function WeatherFX() {
         }
       }
       ctx.strokeStyle = rainColor;
-      ctx.fillStyle = "rgba(228, 236, 224, 0.55)";
+      ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue("--snow").trim() || "rgba(228,236,224,.55)";
       ctx.globalAlpha = snow ? 1 : 0.22;
       ctx.lineWidth = 1;
       ctx.beginPath();

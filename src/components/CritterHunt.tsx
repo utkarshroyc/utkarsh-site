@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CRITTERS, REVEAL_GANGA, useCritters, type Critter } from "@/lib/critters";
+import { CRITTER_EVENT, CRITTERS, foundCount, REVEAL_GANGA, useCritters, type Critter } from "@/lib/critters";
 import { EMAIL } from "@/lib/content";
 
 // Footer tally for the critter hunt, with hints for the ones still hiding.
@@ -12,6 +12,12 @@ const INFO: Record<Critter, { name: string; icon: string; hint: string; found: s
     icon: "🐦",
     hint: "Something red is perched on a line nearby.",
     found: "You spotted the cardinal.",
+  },
+  flicker: {
+    name: "Northern Flicker",
+    icon: "🪶",
+    hint: "Something is drumming on the edge of the map.",
+    found: "You found the flicker.",
   },
   turtle: {
     name: "Turtle",
@@ -28,16 +34,25 @@ const INFO: Record<Critter, { name: string; icon: string; hint: string; found: s
 };
 
 export default function CritterHunt() {
-  const { found, latest } = useCritters();
+  const { found } = useCritters();
   const [toast, setToast] = useState<string | null>(null);
   const all = found.length === CRITTERS.length;
 
+  // A short toast whenever a new creature is found.
   useEffect(() => {
-    if (!latest) return;
-    setToast(`${INFO[latest].found} ${found.length}/${CRITTERS.length}`);
-    const t = setTimeout(() => setToast(null), 3500);
-    return () => clearTimeout(t);
-  }, [latest, found.length]);
+    let t: ReturnType<typeof setTimeout>;
+    const onFound = (e: Event) => {
+      const c = (e as CustomEvent<Critter>).detail;
+      setToast(`${INFO[c].found} ${foundCount()}/${CRITTERS.length}`);
+      clearTimeout(t);
+      t = setTimeout(() => setToast(null), 3500);
+    };
+    window.addEventListener(CRITTER_EVENT, onFound);
+    return () => {
+      window.removeEventListener(CRITTER_EVENT, onFound);
+      clearTimeout(t);
+    };
+  }, []);
 
   return (
     <div className="hunt">
@@ -73,9 +88,10 @@ export default function CritterHunt() {
       {all && (
         // TODO(utkarsh): rewrite this note in your own words.
         <p className="hunt-note">
-          You found all three. A cardinal that never leaves its patch, a turtle that knows its way
-          home, a dolphin in a river that keeps getting rebuilt around it: everything I study comes
-          back to how creatures stay with a place. Thanks for staying a while.{" "}
+          You found all four. A cardinal that never leaves its patch, a flicker drumming far from
+          Alabama, a turtle that knows its way home, a dolphin in a river that keeps getting rebuilt
+          around it: everything I study comes back to how creatures stay with a place. Thanks for
+          staying a while.{" "}
           <a href="https://slightlyunfinished.substack.com/p/tuscaloosa-or-something-like-it" target="_blank" rel="noopener noreferrer">
             Read about the cardinals
           </a>{" "}

@@ -5,11 +5,12 @@ import { useEffect, useState } from "react";
 // The critter hunt: which of the site's creatures this visitor has found.
 // Kept in localStorage (a per-visitor convenience); everything works without it.
 
-export const CRITTERS = ["cardinal", "turtle", "dolphin"] as const;
+export const CRITTERS = ["cardinal", "flicker", "turtle", "dolphin"] as const;
 export type Critter = (typeof CRITTERS)[number];
 
 const KEY = "critters-found";
-const EVENT = "critter-found";
+export const CRITTER_EVENT = "critter-found";
+const EVENT = CRITTER_EVENT;
 
 function read(): Critter[] {
   try {
@@ -29,14 +30,12 @@ export function findCritter(c: Critter) {
   window.dispatchEvent(new CustomEvent(EVENT, { detail: c }));
 }
 
+export const foundCount = () => read().length;
+
 export function useCritters() {
   const [found, setFound] = useState<Critter[]>([]);
-  const [latest, setLatest] = useState<Critter | null>(null);
   useEffect(() => {
-    const sync = (e?: Event) => {
-      setFound(read());
-      if (e instanceof CustomEvent) setLatest(e.detail);
-    };
+    const sync = () => setFound(read());
     const onStorage = () => sync();
     sync();
     window.addEventListener(EVENT, sync);
@@ -46,7 +45,7 @@ export function useCritters() {
       window.removeEventListener("storage", onStorage);
     };
   }, []);
-  return { found, latest };
+  return { found };
 }
 
 // Lets the hunt's hint reveal the river on touch devices, where typing "ganga" is awkward.

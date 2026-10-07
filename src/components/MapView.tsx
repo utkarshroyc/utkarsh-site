@@ -2,10 +2,12 @@
 
 import { geoCircle, geoNaturalEarth1, geoPath } from "d3-geo";
 import { useEffect, useMemo, useRef, useState } from "react";
+import Flicker from "./Flicker";
 import { useMapFocus } from "./MapContext";
 import { formatCoords } from "@/lib/coords";
 import { findCritter, REVEAL_GANGA } from "@/lib/critters";
 import { antisolarPoint } from "@/lib/sun";
+import { downloadPostcard } from "@/lib/postcard";
 
 type Marker = {
   name: string;
@@ -30,7 +32,15 @@ type Props = {
   ganga: string;
   gangaLabel: [number, number];
   markers: Marker[];
-  world: { scale: number; translate: [number, number]; land: string; graticule: string; sphere: string };
+  world: {
+    scale: number;
+    translate: [number, number];
+    land: string;
+    graticule: string;
+    sphere: string;
+    route: string;
+    marks: [number, number][];
+  };
 };
 
 type Mode = "home" | "readers";
@@ -219,13 +229,42 @@ export default function MapView(p: Props) {
   };
 
   const dolphinXY = homeProj(DOLPHIN_AT);
+  const postcard = () => {
+    if (!mine || !mineXY) return;
+    const readers = pins
+      .filter((pin) => pin.t !== mine.t)
+      .map((pin) => project(pin.lon, pin.lat))
+      .filter((xy): xy is { x: number; y: number } => xy !== null);
+    downloadPostcard({
+      mapW: p.w,
+      mapH: p.h,
+      land: p.world.land,
+      graticule: p.world.graticule,
+      sphere: p.world.sphere,
+      route: p.world.route,
+      marks: p.world.marks,
+      readers,
+      you: mineXY,
+      lat: mine.lat,
+      lon: mine.lon,
+    });
+  };
+
   const card = mode === "home" ? p.markers.find((m) => m.name === focus) : undefined;
   const draftXY = draft ? project(draft[0], draft[1]) : null;
   const mineXY = mine ? project(mine.lon, mine.lat) : null;
 
   let caption: React.ReactNode;
   if (mode === "home") caption = <>Fig. 1 · Places I&apos;ve called home.</>;
-  else if (mine) caption = <>Fig. 2 · Where people are reading from. You&apos;re the pink one.</>;
+  else if (mine)
+    caption = (
+      <>
+        Fig. 2 · Where people are reading from. You&apos;re the pink one.{" "}
+        <button type="button" className="link-btn" onClick={postcard}>
+          Get a postcard ↓
+        </button>
+      </>
+    );
   else if (draft)
     caption = (
       <>
@@ -354,6 +393,7 @@ export default function MapView(p: Props) {
             </g>
           )}
         </svg>
+        <Flicker />
         {card && (
           <div
             className="map-card"

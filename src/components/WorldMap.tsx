@@ -63,6 +63,8 @@ export default function WorldMap() {
         land: globePath(land) ?? "",
         graticule: globePath(geoGraticule10()) ?? "",
         sphere: globePath({ type: "Sphere" }) ?? "",
+        route: globePath({ type: "LineString", coordinates: places.map((p) => p.at) }) ?? "",
+        marks: places.map((p) => globe(p.at)!.map((v) => +v.toFixed(1)) as [number, number]),
       }}
     />
   );

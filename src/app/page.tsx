@@ -1,3 +1,4 @@
+import Bookshelf from "@/components/Bookshelf";
 import Cardinal from "@/components/Cardinal";
 import Coords from "@/components/Coords";
 import CritterHunt from "@/components/CritterHunt";
@@ -5,6 +6,7 @@ import LocalConditions from "@/components/LocalConditions";
 import { MapProvider, PlaceRow } from "@/components/MapContext";
 import Topo from "@/components/Topo";
 import Turtle from "@/components/Turtle";
+import SeasonFX from "@/components/SeasonFX";
 import WeatherFX from "@/components/WeatherFX";
 import WorldMap from "@/components/WorldMap";
 import {
@@ -18,7 +20,7 @@ import {
   otherWriting,
   papers,
 } from "@/lib/content";
-import { getReading } from "@/lib/fable";
+import { getFinished, getReading } from "@/lib/fable";
 import { getPosts, SUBSTACK_URL } from "@/lib/substack";
 
 export const revalidate = 3600;
@@ -92,12 +94,13 @@ function Currently({
 }
 
 export default async function Home() {
-  const [posts, reading] = await Promise.all([getPosts(), getReading()]);
+  const [posts, reading, finished] = await Promise.all([getPosts(), getReading(), getFinished()]);
 
   return (
     <MapProvider>
       <main className="page">
         <WeatherFX />
+        <SeasonFX />
         <Coords />
         <Cardinal />
         <header className="masthead">
@@ -197,6 +200,8 @@ export default async function Home() {
             ))}
           </ul>
 
+          <Bookshelf books={finished} />
+
           <h3 id="papers" className="label sub">Papers</h3>
           <ul className="list papers">
             {papers.map((p) => (
@@ -241,11 +246,8 @@ export default async function Home() {
           <span className="foot-text">
             <span>© {new Date().getFullYear()} Utkarsh Roy Choudhury</span>
             <span className="credit">
-              Cardinal song by{" "}
-              <a href="https://xeno-canto.org/75501" target="_blank" rel="noopener noreferrer">
-                Jonathon Jongsma
-              </a>
-              , CC BY-SA 3.0 · Type:{" "}
+              Bird recordings by Jonathon Jongsma (<a href="https://xeno-canto.org/75501" target="_blank" rel="noopener noreferrer">cardinal</a>, CC BY-SA 3.0;{" "}
+              <a href="https://xeno-canto.org/254591" target="_blank" rel="noopener noreferrer">flicker</a>, CC BY-SA 4.0) · Type:{" "}
               <a href="https://velvetyne.fr/fonts/le-murmure/" target="_blank" rel="noopener noreferrer">
                 Le Murmure
               </a>{" "}

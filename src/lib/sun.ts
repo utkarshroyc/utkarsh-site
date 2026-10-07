@@ -19,16 +19,3 @@ export function antisolarPoint(date = new Date()): [number, number] {
   const [lon, lat] = subsolarPoint(date);
   return [lon > 0 ? lon - 180 : lon + 180, -lat];
 }
-
-// Sun's altitude in degrees at a place, right now.
-export function solarAltitude(lat: number, lon: number, date = new Date()): number {
-  const rad = Math.PI / 180;
-  const [sLon, sLat] = subsolarPoint(date);
-  const s =
-    Math.sin(lat * rad) * Math.sin(sLat * rad) +
-    Math.cos(lat * rad) * Math.cos(sLat * rad) * Math.cos((lon - sLon) * rad);
-  return Math.asin(s) / rad;
-}
-
-// Day = the sun is above the horizon in Brooklyn (allowing for refraction).
-export const isBrooklynDay = (date = new Date()) => solarAltitude(40.68, -73.94, date) > -0.833;

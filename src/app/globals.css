@@ -17,25 +17,6 @@
   --fog-rgb: 196 210 194;
 }
 
-/* Day map: paper and ink while the sun is up in Brooklyn (set by ThemeClock). */
-:root[data-theme="day"] {
-  color-scheme: light;
-  --paper: #f3efe6;
-  --ink: #23211c;
-  --ink-2: #5a5549;
-  --ink-3: #8a8374;
-  --rule: #d9d2c2;
-  --accent: #d6336c;
-  --water: #3f6f8f;
-  --contour: #c9bea6;
-  --contour-index: #9c8f70;
-  --land: #e6dfcf;
-  --snow: rgb(120 128 140 / 0.5);
-  --fog-rgb: 150 145 130;
-}
-body {
-  transition: background-color 1.2s ease, color 1.2s ease;
-}
 
 html {
   scroll-behavior: smooth;
@@ -277,15 +258,7 @@ a:hover .arrow {
 .logos li:hover img {
   opacity: 1;
 }
-/* On the paper map the logos are printed in ink instead of glowing. */
-:root[data-theme="day"] .logos img {
-  filter: grayscale(1) contrast(1.3) brightness(0.85);
-  mix-blend-mode: multiply;
-  opacity: 0.6;
-}
-:root[data-theme="day"] .logos li:hover img {
-  opacity: 0.85;
-}
+
 .logos li[data-tip]::after {
   content: attr(data-tip);
   position: absolute;
@@ -985,10 +958,7 @@ section {
   opacity: var(--night-opacity, 0.22);
   pointer-events: none;
 }
-:root[data-theme="day"] {
-  --night-fill: #4a4232;
-  --night-opacity: 0.08;
-}
+
 
 /* ---------- Ganga river dolphin ---------- */
 .world .dolphin {
@@ -1349,8 +1319,7 @@ button.hunt-slot {
 
 /* ---------- Print: a one-sheet topographic "map sheet" ---------- */
 @media print {
-  :root,
-  :root[data-theme] {
+  :root {
     --paper: #fff;
     --ink: #1d1b17;
     --ink-2: #3f3b33;

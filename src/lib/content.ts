@@ -48,50 +48,12 @@ export const places: Place[] = [
 export const CORAL_URL = "https://startcoral.com";
 export const LINKEDIN = links[1].href;
 
-// About me. Drafted from my essays on slightly* unfinished.
-// TODO(utkarsh): edit freely; these are a first pass in my voice.
-export type Note = { label: string; text: string; essay?: { title: string; href: string } };
-
-const ESSAYS = "https://slightlyunfinished.substack.com/p";
-
-export const about: Note[] = [
-  {
-    label: "Home",
-    text: "Home, for me, has always been a person, never a city. I've lived in five of them, and the places I miss are really the people in them: the friend who left banana bread on my desk, the brother who slept on the floor of an empty apartment with me our first week in Alabama.",
-    essay: { title: "Love Letters from the Finish Line", href: `${ESSAYS}/love-letters-from-the-finish-line` },
-  },
-  {
-    label: "Rivers",
-    text: "I spent five years thinking about one river, the Ganga, and I still go looking for water wherever I land. My favourite place in Tuscaloosa was a plain walkway along the Black Warrior River, where herons stood in the shallows and the evening light went copper.",
-  },
-  {
-    label: "Birds",
-    text: "I moved to America knowing none of its birds. Now I can't stop noticing them: the cardinal that never leaves its patch, the flicker drumming on a dead branch. Click the red one perched nearby; it sings.",
-    essay: { title: "tuscaloosa, or something like it", href: `${ESSAYS}/tuscaloosa-or-something-like-it` },
-  },
-  {
-    label: "Climbing",
-    text: "I grew up with the Himalayas, so I was a mountain snob until sixty feet of Kentucky sandstone humbled me. Climbing was never about conquering anything. On the wall, the world goes quiet and all that exists is the next hold.",
-    essay: { title: "vertical stillness", href: `${ESSAYS}/vertical-stillness` },
-  },
-  {
-    label: "Learning",
-    text: "Drop me into something I couldn't care less about and I'll figure it out. That's my trademark statement at this point. Ask me how a political ecologist ended up teaching atmospheric science to a hundred undergrads.",
-    essay: { title: "good enough (?)", href: `${ESSAYS}/good-enough` },
-  },
-  {
-    label: "Strong opinions",
-    text: "Good coffee matters. Presentations should move with the argument. And resilience can be a trap: we've gotten very good at cleaning up our messes and much worse at not making them.",
-    essay: { title: "beautiful, sinking things", href: `${ESSAYS}/beautiful-sinking-things` },
-  },
-];
-
 // One line per chapter, matching the cities on the map. The full CV lives on LinkedIn.
 export type Chapter = { years: string; place: string; line: string; href?: string };
 
 export const chapters: Chapter[] = [
   { years: "2026—", place: "Brooklyn", line: "Operations & research at Coral", href: CORAL_URL },
-  { years: "2021—26", place: "Tuscaloosa", line: "PhD in Geography on the politics of restoring the Ganga, while teaching about 100 undergrads a semester" },
+  { years: "2021—26", place: "Tuscaloosa", line: "PhD in Geography on the politics of restoring a river system, while teaching about 100 undergrads a semester" },
   { years: "2019—20", place: "Brighton", line: "MA at the Institute of Development Studies, research at the Students' Union" },
   { years: "2017—19", place: "Lucknow", line: "Co-founded Upcyclio, an upcycling startup" },
   { years: "2015—19", place: "Pune", line: "BBA at Symbiosis, AIESEC, and my first policy work with UNDP" },

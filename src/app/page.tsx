@@ -8,7 +8,6 @@ import Turtle from "@/components/Turtle";
 import WeatherFX from "@/components/WeatherFX";
 import WorldMap from "@/components/WorldMap";
 import {
-  about,
   chapters,
   CORAL_URL,
   currently,
@@ -112,8 +111,8 @@ export default async function Home() {
           <h1>Utkarsh Roy Choudhury</h1>
           <p className="lede">
             Geographer turned climate operator. I spent five years studying how
-            big environmental programs play out on the ground, along
-            India&apos;s Ganga. Now I work on the other end of the problem at{" "}
+            big environmental programs play out on the ground, along a river
+            system in India. Now I work on the other end of the problem at{" "}
             <Ext href={CORAL_URL}>Coral</Ext>, making home electrification less
             painful.
           </p>
@@ -124,7 +123,6 @@ export default async function Home() {
           </p>
           <Currently latest={posts[0]} reading={reading} />
           <nav className="jump" aria-label="Sections">
-            <a href="#about">About me</a>
             <a href="#chapters">Chapters</a>
             <a href="#writing">Writing</a>
             <a href="#contact">Contact</a>
@@ -152,25 +150,7 @@ export default async function Home() {
 
         <WorldMap />
 
-        <Section id="about" n="01" title="About me">
-          <ul className="notes">
-            {about.map((n) => (
-              <li key={n.label}>
-                <span className="note-label">{n.label}</span>
-                <div>
-                  <p>{n.text}</p>
-                  {n.essay && (
-                    <p className="from">
-                      from <Ext href={n.essay.href}>{n.essay.title}</Ext>
-                    </p>
-                  )}
-                </div>
-              </li>
-            ))}
-          </ul>
-        </Section>
-
-        <Section id="chapters" n="02" title="Chapters">
+        <Section id="chapters" n="01" title="Chapters">
           <ul className="list chapters">
             {chapters.map((c) => (
               <PlaceRow key={c.place} place={c.place} years={c.years}>
@@ -188,7 +168,7 @@ export default async function Home() {
           </p>
         </Section>
 
-        <Section id="writing" n="03" title="Writing">
+        <Section id="writing" n="02" title="Writing">
           <p className="intro">
             <Ext href={SUBSTACK_URL}>slightly* unfinished</Ext> is my newsletter
             on culture, climate and the spaces in between.
@@ -235,7 +215,7 @@ export default async function Home() {
           </ul>
         </Section>
 
-        <Section id="contact" n="04" title="Contact">
+        <Section id="contact" n="03" title="Contact">
           <p className="intro">
             Happy to talk about climate, electrification, conservation policy,
             or anything I&apos;ve written. The fastest way to reach me is{" "}

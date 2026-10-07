@@ -1141,39 +1141,6 @@ button.hunt-slot {
   opacity: 0.75;
 }
 
-/* ---------- About me: field-notebook entries ---------- */
-.notes {
-  margin-top: 8px;
-}
-.notes > li {
-  display: grid;
-  grid-template-columns: 120px 1fr;
-  gap: 16px;
-  padding: 18px 0;
-  border-bottom: 1px dashed var(--rule);
-}
-.notes > li:last-child {
-  border-bottom: 0;
-}
-.note-label {
-  font-family: var(--font-mono), monospace;
-  font-size: 12px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--accent);
-  padding-top: 4px;
-}
-.notes p {
-  color: var(--ink-2);
-  text-wrap: pretty;
-}
-.notes p.from {
-  margin-top: 6px;
-  font-family: var(--font-mono), monospace;
-  font-size: 12px;
-  color: var(--ink-3);
-}
-
 /* ---------- Chapters: one line per city ---------- */
 .list.chapters > .row {
   padding: 12px 0;
@@ -1216,12 +1183,3 @@ button.hunt-slot {
   white-space: nowrap;
 }
 
-@media (max-width: 560px) {
-  .notes > li {
-    grid-template-columns: 1fr;
-    gap: 4px;
-  }
-  .note-label {
-    padding-top: 0;
-  }
-}

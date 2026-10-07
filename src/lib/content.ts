@@ -39,7 +39,7 @@ export type Place = { name: string; at: [number, number]; years: string; note: s
 
 export const places: Place[] = [
   { name: "Lucknow", at: [80.95, 26.85], years: "Home · Upcyclio 2017–19", note: "Where it started", label: "right" },
-  { name: "Pune", at: [73.86, 18.52], years: "2015–19", note: "BBA, AIESEC, UNDP", label: "left" },
+  { name: "Pune", at: [73.86, 18.52], years: "2016–19", note: "BBA, AIESEC, UNDP", label: "left" },
   { name: "Brighton", at: [-0.14, 50.82], years: "2019–20", note: "MA, IDS, Students' Union", label: "above" },
   { name: "Tuscaloosa", at: [-87.57, 33.21], years: "2021–26", note: "PhD, teaching, GAGES", label: "below" },
   { name: "Brooklyn", at: [-73.94, 40.68], years: "2026—", note: "Coral", label: "right" },
@@ -56,7 +56,7 @@ export const chapters: Chapter[] = [
   { years: "2021—26", place: "Tuscaloosa", line: "PhD in Geography on the politics of restoring a river system, while teaching about 100 undergrads a semester" },
   { years: "2019—20", place: "Brighton", line: "MA at the Institute of Development Studies, research at the Students' Union" },
   { years: "2017—19", place: "Lucknow", line: "Co-founded Upcyclio, an upcycling startup" },
-  { years: "2015—19", place: "Pune", line: "BBA at Symbiosis, AIESEC, and my first policy work with UNDP" },
+  { years: "2016—19", place: "Pune", line: "BBA at Symbiosis, AIESEC, and my first policy work with UNDP" },
 ];
 
 export type Paper = {

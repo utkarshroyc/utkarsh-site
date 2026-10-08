@@ -6,6 +6,7 @@ import LocalConditions from "@/components/LocalConditions";
 import { MapProvider, PlaceRow } from "@/components/MapContext";
 import Topo from "@/components/Topo";
 import Turtle from "@/components/Turtle";
+import { RioFooter, RioRunner } from "@/components/Rio";
 import SeasonFX from "@/components/SeasonFX";
 import WeatherFX from "@/components/WeatherFX";
 import WorldMap from "@/components/WorldMap";
@@ -103,6 +104,7 @@ export default async function Home() {
         <SeasonFX />
         <Coords />
         <Cardinal />
+        <RioRunner />
         <header className="masthead">
           <Topo />
           <p className="meta">
@@ -238,6 +240,7 @@ export default async function Home() {
 
         <footer className="foot meta">
           <Turtle />
+          <RioFooter />
           <svg viewBox="0 0 120 10" className="scale" aria-hidden="true">
             <path d="M1 8V2M1 5H119M119 8V2M30 5V3M60 7V2M90 5V3" />
             <rect x="1" y="4" width="29" height="2" />

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { findCritter } from "@/lib/critters";
+import { CARDINAL_FLIGHT } from "./Rio";
 
 // A cardinal that perches on a rule line: first the masthead, then each section's
 // heading as you scroll, flying between them. Click it and it sings.
@@ -63,6 +64,7 @@ export default function Cardinal() {
         el.style.transition = "";
       }
       const ms = flightMs(Math.abs(next - start));
+      window.dispatchEvent(new Event(CARDINAL_FLIGHT)); // Rio gives chase
       setFlight({ ms, key: Date.now() });
       setTop(next);
       clearTimeout(landing.current);

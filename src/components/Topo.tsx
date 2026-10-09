@@ -40,8 +40,14 @@ export default function Topo() {
     const onMove = (e: PointerEvent) => {
       cancelAnimationFrame(frame);
       frame = requestAnimationFrame(() => {
-        el.style.setProperty("--mx", (e.clientX / innerWidth - 0.5).toFixed(3));
-        el.style.setProperty("--my", (e.clientY / innerHeight - 0.5).toFixed(3));
+        // Write each peak's transform directly; a CSS variable on the parent would
+        // recalc styles for every contour path on every pointer move.
+        const mx = e.clientX / innerWidth - 0.5;
+        const my = e.clientY / innerHeight - 0.5;
+        el.querySelectorAll<SVGGElement>(".topo-peak").forEach((g, i) => {
+          const depth = PEAKS[i].depth;
+          g.style.transform = `translate(${(-mx * depth).toFixed(2)}px, ${(-my * depth).toFixed(2)}px)`;
+        });
       });
     };
     window.addEventListener("pointermove", onMove, { passive: true });
@@ -55,10 +61,12 @@ export default function Topo() {
     <div className="topo" aria-hidden="true">
       <svg ref={ref} viewBox="0 0 1280 460" preserveAspectRatio="xMidYMin slice">
         {PEAKS.map((p, pi) => (
-          <g key={pi} className="topo-peak" style={{ "--depth": p.depth } as React.CSSProperties}>
-            {RINGS[pi].map((d, i) => (
-              <path key={i} d={d} className={i % 4 === 3 ? "index" : undefined} />
-            ))}
+          <g key={pi} className="topo-peak">
+            <g className="topo-breathe">
+              {RINGS[pi].map((d, i) => (
+                <path key={i} d={d} className={i % 4 === 3 ? "index" : undefined} />
+              ))}
+            </g>
           </g>
         ))}
       </svg>

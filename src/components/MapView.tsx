@@ -75,6 +75,12 @@ function readStored(): Pin | null {
 export default function MapView(p: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const [mode, setMode] = useState<Mode>("home");
+  const [switched, setSwitched] = useState(false);
+  const switchTo = (m: Mode) => {
+    if (m === mode) return;
+    setSwitched(true);
+    setMode(m);
+  };
   const [drawn, setDrawn] = useState(false);
   const [river, setRiver] = useState(false);
   const [cursor, setCursor] = useState<string | null>(null);
@@ -247,7 +253,7 @@ export default function MapView(p: Props) {
       you: mineXY,
       lat: mine.lat,
       lon: mine.lon,
-    });
+    }).then(() => setStatus("Postcard saved ✓"));
   };
 
   const card = mode === "home" ? p.markers.find((m) => m.name === focus) : undefined;
@@ -283,10 +289,10 @@ export default function MapView(p: Props) {
     <figure className="map">
       {pinsOn && (
         <div className="map-tabs" role="tablist" aria-label="Map view">
-          <button role="tab" aria-selected={mode === "home"} onClick={() => setMode("home")}>
+          <button role="tab" aria-selected={mode === "home"} onClick={() => switchTo("home")}>
             Places I&apos;ve lived
           </button>
-          <button role="tab" aria-selected={mode === "readers"} onClick={() => setMode("readers")}>
+          <button role="tab" aria-selected={mode === "readers"} onClick={() => switchTo("readers")}>
             Where readers are <span className="count">{pins.length}</span>
           </button>
         </div>
@@ -296,8 +302,9 @@ export default function MapView(p: Props) {
         className={`world-wrap${drawn ? " is-drawn" : ""}${river ? " has-river" : ""} mode-${mode}`}
       >
         <svg
+          key={mode}
           viewBox={`0 0 ${p.w} ${p.h}`}
-          className="world"
+          className={`world${switched ? " swap-in" : ""}`}
           role="img"
           aria-labelledby="world-title"
           onPointerMove={onMove}

@@ -48,5 +48,8 @@ export function useCritters() {
   return { found };
 }
 
+// Fired once when the last creature is found, for the celebration.
+export const HUNT_COMPLETE = "hunt-complete";
+
 // Lets the hunt's hint reveal the river on touch devices, where typing "ganga" is awkward.
 export const REVEAL_GANGA = "reveal-ganga";

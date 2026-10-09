@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { HUNT_COMPLETE } from "@/lib/critters";
 
 // Rio, my golden retriever. He runs along the bottom of the screen whenever the cardinal
 // takes off, and plays with the turtle down by the footer.
@@ -46,20 +47,23 @@ export function RioRunner() {
   useEffect(() => {
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     let done: ReturnType<typeof setTimeout>;
-    const go = () => {
+    const go = (e?: Event) => {
       const now = Date.now();
-      if (now - last.current < COOLDOWN_MS) return;
+      const victoryLap = e?.type === HUNT_COMPLETE;
+      if (!victoryLap && now - last.current < COOLDOWN_MS) return;
       last.current = now;
       setRun({ key: now, dir: Math.random() < 0.7 ? 1 : -1 });
       clearTimeout(done);
       done = setTimeout(() => setRun(null), RUN_MS + 200);
     };
-    const intro = setTimeout(go, 7000);
+    const intro = setTimeout(() => go(), 7000);
     window.addEventListener(CARDINAL_FLIGHT, go);
+    window.addEventListener(HUNT_COMPLETE, go);
     return () => {
       clearTimeout(intro);
       clearTimeout(done);
       window.removeEventListener(CARDINAL_FLIGHT, go);
+      window.removeEventListener(HUNT_COMPLETE, go);
     };
   }, []);
 

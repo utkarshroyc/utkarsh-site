@@ -65,7 +65,9 @@ export default function Cardinal() {
       }
       const ms = flightMs(Math.abs(next - start));
       window.dispatchEvent(new Event(CARDINAL_FLIGHT)); // Rio gives chase
-      setFlight({ ms, key: Date.now() });
+      // Keep the same key if already airborne, so the swoop keeps going instead of
+      // remounting and restarting from zero mid-air.
+      setFlight((prev) => ({ ms, key: prev?.key ?? Date.now() }));
       setTop(next);
       clearTimeout(landing.current);
       landing.current = setTimeout(() => setFlight(null), ms);

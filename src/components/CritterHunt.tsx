@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CRITTER_EVENT, CRITTERS, foundCount, REVEAL_GANGA, useCritters, type Critter } from "@/lib/critters";
+import { CRITTER_EVENT, CRITTERS, foundCount, HUNT_COMPLETE, REVEAL_GANGA, useCritters, type Critter } from "@/lib/critters";
 import { EMAIL } from "@/lib/content";
 
 // Footer tally for the critter hunt, with hints for the ones still hiding.
@@ -36,6 +36,7 @@ const INFO: Record<Critter, { name: string; icon: string; hint: string; found: s
 export default function CritterHunt() {
   const { found } = useCritters();
   const [toast, setToast] = useState<string | null>(null);
+  const [celebrating, setCelebrating] = useState(false);
   const all = found.length === CRITTERS.length;
 
   // A short toast whenever a new creature is found.
@@ -43,7 +44,12 @@ export default function CritterHunt() {
     let t: ReturnType<typeof setTimeout>;
     const onFound = (e: Event) => {
       const c = (e as CustomEvent<Critter>).detail;
-      setToast(`${INFO[c].found} ${foundCount()}/${CRITTERS.length}`);
+      const n = foundCount();
+      setToast(n === CRITTERS.length ? "You found them all!" : `${INFO[c].found} ${n}/${CRITTERS.length}`);
+      if (n === CRITTERS.length) {
+        setCelebrating(true);
+        window.dispatchEvent(new Event(HUNT_COMPLETE));
+      }
       clearTimeout(t);
       t = setTimeout(() => setToast(null), 3500);
     };
@@ -55,12 +61,17 @@ export default function CritterHunt() {
   }, []);
 
   return (
-    <div className="hunt">
+    <div className={`hunt${celebrating ? " is-celebrating" : ""}`}>
       <p className="hunt-tally">
         <span>Creatures spotted</span>
         {CRITTERS.map((c) =>
           found.includes(c) ? (
-            <span key={c} className="hunt-slot is-found" title={INFO[c].name}>
+            <span
+              key={c}
+              className="hunt-slot is-found"
+              title={INFO[c].name}
+              style={{ "--i": CRITTERS.indexOf(c) } as React.CSSProperties}
+            >
               {INFO[c].icon}
             </span>
           ) : c === "dolphin" ? (

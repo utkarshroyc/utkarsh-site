@@ -39,7 +39,8 @@ function Ext({ href, children }: { href: string; children: React.ReactNode }) {
       {...(external && { target: "_blank", rel: "noopener noreferrer" })}
     >
       {children}
-      {external && <span className="arrow">↗</span>}
+      {/* word joiner keeps the arrow on the same line as the last word */}
+      {external && <span className="arrow">{"\u2060"}↗</span>}
     </a>
   );
 }
@@ -249,8 +250,8 @@ export default async function Home() {
           <span className="foot-text">
             <span>© {new Date().getFullYear()} Utkarsh Roy Choudhury</span>
             <span className="credit">
-              Bird recordings by Jonathon Jongsma (<a href="https://xeno-canto.org/75501" target="_blank" rel="noopener noreferrer">cardinal</a>, CC BY-SA 3.0;{" "}
-              <a href="https://xeno-canto.org/254591" target="_blank" rel="noopener noreferrer">flicker</a>, CC BY-SA 4.0) · Type:{" "}
+              Bird recordings by Jonathon Jongsma (<a href="https://xeno-canto.org/75501" target="_blank" rel="noopener noreferrer">cardinal</a>, <span className="nowrap">CC BY-SA 3.0</span>;{" "}
+              <a href="https://xeno-canto.org/254591" target="_blank" rel="noopener noreferrer">flicker</a>, <span className="nowrap">CC BY-SA 4.0</span>) · Type:{" "}
               <a href="https://velvetyne.fr/fonts/le-murmure/" target="_blank" rel="noopener noreferrer">
                 Le Murmure
               </a>{" "}

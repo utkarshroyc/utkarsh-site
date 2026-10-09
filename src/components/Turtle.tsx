@@ -8,6 +8,7 @@ import { findCritter } from "@/lib/critters";
 export default function Turtle() {
   return (
     <div className="turtle-track">
+      <div className="amble">
       <a
         href="#papers"
         className="turtle"
@@ -27,6 +28,7 @@ export default function Turtle() {
           <path d="M9 12.4l1.6-4.6h8l1.6 4.6M10.6 7.8l4-4.2 4 4.2" className="turtle-scutes" />
         </svg>
       </a>
+      </div>
     </div>
   );
 }

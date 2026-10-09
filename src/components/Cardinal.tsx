@@ -59,7 +59,7 @@ export default function Cardinal() {
       const el = ref.current;
       if (el && start !== from) {
         el.style.transition = "none";
-        el.style.top = `${start}px`;
+        el.style.transform = `translate3d(0, ${start}px, 0)`;
         void el.offsetHeight; // commit the jump before the flight transition starts
         el.style.transition = "";
       }
@@ -84,16 +84,19 @@ export default function Cardinal() {
     };
   }, []);
 
+  // Load the song as soon as the pointer arrives, so sound and motion start together.
+  const warm = () => {
+    audio.current ??= Object.assign(new Audio(SONG), { volume: 0.6, preload: "auto" });
+  };
+
   const sing = () => {
     findCritter("cardinal");
-    audio.current ??= Object.assign(new Audio(SONG), { volume: 0.6 });
-    const a = audio.current;
+    warm();
+    const a = audio.current!;
     a.currentTime = 0;
     a.onended = () => setSinging(false);
-    a.play().then(
-      () => setSinging(true),
-      () => setSinging(false)
-    );
+    setSinging(true); // animate on the same frame as the tap, not after play() resolves
+    a.play().catch(() => setSinging(false));
   };
 
   return (
@@ -101,10 +104,13 @@ export default function Cardinal() {
       ref={ref}
       type="button"
       onClick={sing}
+      onPointerEnter={warm}
+      onFocus={warm}
       className={`cardinal${flight ? " is-flying" : ""}${singing ? " is-singing" : ""}`}
       style={
         {
-          top: top ?? 0,
+          // Moved with transform (compositor-only) rather than `top`, so flights don't re-layout.
+          transform: `translate3d(0, ${top ?? 0}px, 0)`,
           visibility: top === null ? "hidden" : undefined,
           "--fly-ms": `${flight?.ms ?? 1400}ms`,
         } as React.CSSProperties

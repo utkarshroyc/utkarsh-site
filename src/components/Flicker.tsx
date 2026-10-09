@@ -40,11 +40,15 @@ export default function Flicker() {
     };
   }, []);
 
+  const warm = () => {
+    audio.current ??= Object.assign(new Audio(DRUM), { volume: 0.7, preload: "auto" });
+  };
+
   const onClick = () => {
     findCritter("flicker");
-    audio.current ??= Object.assign(new Audio(DRUM), { volume: 0.7 });
-    audio.current.currentTime = 0;
-    audio.current.play().catch(() => {});
+    warm();
+    audio.current!.currentTime = 0;
+    audio.current!.play().catch(() => {});
     drum(1300);
   };
 
@@ -53,6 +57,8 @@ export default function Flicker() {
       type="button"
       className={`flicker${drumming ? " is-drumming" : ""}`}
       onClick={onClick}
+      onPointerEnter={warm}
+      onFocus={warm}
       aria-label="A Northern Flicker. Click to hear it drum"
       data-tip="a yellowhammer, a long way from Alabama"
     >

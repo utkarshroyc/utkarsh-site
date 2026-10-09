@@ -82,6 +82,8 @@ export function RioRunner() {
 export function RioFooter() {
   const [happy, setHappy] = useState(0);
   return (
+    <div className="rio-track">
+    <div className="amble rio-amble">
     <button
       type="button"
       className={`rio-footer${happy ? " is-happy" : ""}`}
@@ -100,5 +102,7 @@ export function RioFooter() {
         </svg>
       )}
     </button>
+    </div>
+    </div>
   );
 }

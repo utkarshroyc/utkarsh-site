@@ -199,19 +199,9 @@
   gap: 8px 14px;
   flex-wrap: wrap;
 }
-.work-now {
-  font-family: var(--font-mono), monospace;
-  font-size: 0.75rem;
-  color: var(--paper);
-  background: var(--water);
-  border: 0;
-  border-radius: 999px;
-  padding: 6px 13px;
-  cursor: pointer;
-  transition: transform 120ms var(--ease-out);
-}
-.work-now:active {
-  transform: scale(0.96);
+.work-row > span {
+  color: var(--ink-2);
+  font-size: 1rem;
 }
 .work-row input {
   font-family: var(--font-mono), monospace;

@@ -42,10 +42,6 @@ const avg = (xs: number[]) => xs.reduce((a, b) => a + b, 0) / xs.length;
 // "HH:MM" <-> minutes since midnight, and "9:05 am" for display.
 const toMins = (hm: string) => +hm.slice(0, 2) * 60 + +hm.slice(3);
 const fmtClock = (mins: number) => fmtTime(new Date(2000, 0, 1, Math.floor(mins / 60), mins % 60).getTime());
-const nowHM = () => {
-  const d = new Date();
-  return `${pad(d.getHours())}:${pad(d.getMinutes())}`;
-};
 
 // "Today" only exists in the browser; the server renders without it.
 const noop = () => () => {};
@@ -313,7 +309,7 @@ export function UsJournal({ initial }: { initial: UsData }) {
               entry={data.moods[`${date}:${who}`]}
               onSave={saveMood}
             />
-            <WorkRow time={data.work[`${date}:${who}`]} isToday={date === today} onSave={saveWork} />
+            <WorkRow time={data.work[`${date}:${who}`]} onSave={saveWork} />
             {who === "sophie" && <PeriodPanel flow={data.period[date]} onSave={savePeriod} />}
             {error && <p className="meta us-error">{error}</p>}
           </section>
@@ -431,33 +427,25 @@ function LogPanel({
 
 function WorkRow({
   time,
-  isToday,
   onSave,
 }: {
   time?: string;
-  isToday: boolean;
   onSave: (time: string | null) => void;
 }) {
   return (
-    <div className="work-row">
-      <span className="meta">At work</span>
-      {!time && isToday && (
-        <button className="work-now" onClick={() => onSave(nowHM())}>
-          I&rsquo;m at work
-        </button>
-      )}
+    <label className="work-row">
+      <span>I got to work at</span>
       <input
         type="time"
-        aria-label="Time you got to work"
         value={time ?? ""}
         onChange={(e) => e.target.value && onSave(e.target.value)}
       />
       {time && (
-        <button className="link-btn muted" onClick={() => onSave(null)}>
+        <button className="link-btn muted" onClick={(e) => (e.preventDefault(), onSave(null))}>
           clear
         </button>
       )}
-    </div>
+    </label>
   );
 }
 
